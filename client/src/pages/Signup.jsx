@@ -4,6 +4,7 @@ const SignUp = () => {
       <div>
         <section className="overflow-hidden">
           <div className="flex flex-wrap">
+            {/* Blurb Section */}
             <div className="w-full md:w-1/2">
               <div className="flex items-center py-24 px-4 md:px-8 h-full bg-white">
                 <div className="text-center max-w-xl mx-auto">
@@ -28,17 +29,25 @@ const SignUp = () => {
                 <p className="mb-8 text-base text-gray-300 font-medium">Join our community of learners and experts! Sign up now to start booking sessions with top tutors and achieve your academic goals.</p>
                 <form action="#">
                   <div className="flex flex-wrap -m-2">
+                    {/* First Name */}
+                    <div className="w-full p-2">
+                      <input type="text" placeholder="First Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                    </div>
+                    {/* Last Name */}
+                    <div className="w-full p-2">
+                      <input type="text" placeholder="Last Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                    </div>
                     {/* Email */}
                     <div className="w-full p-2">
-                      <input id="default-input-1" type="text" placeholder="Email Address" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input type="text" placeholder="Email Address" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                     </div>
                     {/* Password */}
                     <div className="w-full p-2">
-                      <input id="default-input-2" type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                     </div>
                     {/* {assword repeat} */}
                     <div className="w-full p-2">
-                      <input id="default-input-3" type="password" placeholder="Repeat Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input type="password" placeholder="Repeat Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                     </div>
                     <div className="w-full p-2">
                       <div className="flex items-start">
