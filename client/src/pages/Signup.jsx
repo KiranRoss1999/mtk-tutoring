@@ -1,13 +1,6 @@
 const SignUp = () => {
   return (
     <div>
-      <title>Page title</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700,800,900|Quicksand:400,500,600,700,800,900" />
-      <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
-      <link rel="icon" type="image/png" sizes="32x32" href="shuffle-for-tailwind.png" />
       <div>
         <section className="overflow-hidden">
           <div className="flex flex-wrap">
@@ -28,18 +21,22 @@ const SignUp = () => {
                 </div>
               </div>
             </div>
+            {/* Form Section */}
             <div className="w-full md:w-1/2">
               <div className="max-w-md mx-auto py-24 md:py-44 px-4 md:px-8">
                 <h3 className="mb-5 text-3xl text-gray-500 font-semibold">Sign Up</h3>
                 <p className="mb-8 text-base text-gray-300 font-medium">Join our community of learners and experts! Sign up now to start booking sessions with top tutors and achieve your academic goals.</p>
                 <form action="#">
                   <div className="flex flex-wrap -m-2">
+                    {/* Email */}
                     <div className="w-full p-2">
                       <input id="default-input-1" type="text" placeholder="Email Address" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                     </div>
+                    {/* Password */}
                     <div className="w-full p-2">
                       <input id="default-input-2" type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                     </div>
+                    {/* {assword repeat} */}
                     <div className="w-full p-2">
                       <input id="default-input-3" type="password" placeholder="Repeat Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                     </div>

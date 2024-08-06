@@ -3,6 +3,7 @@ const Login = () => {
     <div>
       <section className="overflow-hidden">
         <div className="flex flex-wrap">
+          {/* Blurb Section */}
           <div className="w-full md:w-1/2">
             <div className="flex items-center py-24 px-4 md:px-8 h-full bg-white">
               <div className="text-center max-w-xl mx-auto">
@@ -19,16 +20,20 @@ const Login = () => {
               </div>
             </div>
           </div>
+          {/* Form section */}
           <div className="w-full md:w-1/2">
             <div className="max-w-md mx-auto py-24 md:py-44 px-4 md:px-8">
               <h3 className="mb-5 text-3xl text-gray-500 font-semibold">Sign In</h3>
               <p className="mb-8 text-base text-gray-300 font-medium">Welcome back! Ready to find your perfect tutor and achieve your learning goals? Sign in to book your next session now!</p>
+              {/* Start of Form */}
               <form action="#">
                 <div className="flex flex-wrap -m-3">
+                  {/* First Name */}
                   <div className="w-full p-3">
                     <label htmlFor="default-label-1" className="mb-2 inline-block text-xs text-gray-300 font-medium">First Name</label>
                     <input id="default-label-1" type="text" placeholder="First Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                   </div>
+                  {/* Last Name */}
                   <div className="w-full p-3">
                     <label htmlFor="default-label-2" className="mb-2 inline-block text-xs text-gray-300 font-medium">Password</label>
                     <input id="default-label-2" type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
