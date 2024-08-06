@@ -14,6 +14,11 @@ const typeDefs = `
   type Query {
     me: User
   }
+
+  type Mutation {
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+  }
 `;
 
 module.exports = typeDefs;

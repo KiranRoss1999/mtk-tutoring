@@ -2,7 +2,13 @@ const {Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  lastName: {
     type: String,
     required: true,
     unique: true,
@@ -33,6 +39,10 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('fullName').get(function() {
+  return this.firstName + ' ' + this.lastName;
+})
 
 const User = model('User', userSchema);
 
