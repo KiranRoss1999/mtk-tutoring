@@ -31,13 +31,14 @@ const Login = () => {
                   {/* First Name */}
                   <div className="w-full p-3">
                     <label htmlFor="default-label-1" className="mb-2 inline-block text-xs text-gray-300 font-medium">First Name</label>
-                    <input id="default-label-1" type="text" placeholder="First Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                    <input type="text" placeholder="First Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                   </div>
                   {/* Last Name */}
                   <div className="w-full p-3">
                     <label htmlFor="default-label-2" className="mb-2 inline-block text-xs text-gray-300 font-medium">Password</label>
-                    <input id="default-label-2" type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                    <input type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
                   </div>
+
                   <div className="w-full p-3">
                     <div className="flex flex-wrap items-center justify-between -m-2">
                       <div className="w-auto p-2">
