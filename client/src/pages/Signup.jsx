@@ -1,4 +1,44 @@
-const SignUp = () => {
+import {useState} from 'react';
+import {useMutation} from '@apollo/client';
+import {Link} from 'react-router-dom';
+import {ADD_USER} from '../utils/mutations';
+import Auth from '../utils/auth';
+
+const SignUp = (props) => {
+  const [formState, setFormState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+
+  const [addUser] = useMutation(ADD_USER);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const mutationResponse = await addUser({
+      variables: {
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        email: formState.email,
+        password: formState.password,
+      },
+    });
+
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+  };
+
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <div>
       <div>
@@ -27,38 +67,70 @@ const SignUp = () => {
               <div className="max-w-md mx-auto py-24 md:py-44 px-4 md:px-8">
                 <h3 className="mb-5 text-3xl text-gray-500 font-semibold">Sign Up</h3>
                 <p className="mb-8 text-base text-gray-300 font-medium">Join our community of learners and experts! Sign up now to start booking sessions with top tutors and achieve your academic goals.</p>
-                <form action="#">
+                <form onSubmit={handleFormSubmit}>
                   <div className="flex flex-wrap -m-2">
                     {/* First Name */}
                     <div className="w-full p-2">
-                      <input type="text" placeholder="First Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input 
+                        type="firstName" 
+                        placeholder="First Name"
+                        id='firstName'
+                        name='firstName' 
+                        className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" 
+                        onChange={handleChange}
+                      />
                     </div>
                     {/* Last Name */}
                     <div className="w-full p-2">
-                      <input type="text" placeholder="Last Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input 
+                        type="lastName" 
+                        placeholder="Last Name"
+                        id='lastName'
+                        name='lastName' 
+                        className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" 
+                        onChange={handleChange}
+                      />
                     </div>
                     {/* Email */}
                     <div className="w-full p-2">
-                      <input type="text" placeholder="Email Address" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input 
+                        type="email" 
+                        placeholder="Email Address"
+                        id='email'
+                        name='email' 
+                        className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" 
+                        onChange={handleChange}
+                      />
                     </div>
                     {/* Password */}
                     <div className="w-full p-2">
-                      <input type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                      <input 
+                        type="password" 
+                        placeholder="Password"
+                        id='pwd'
+                        name='password' 
+                        className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" 
+                        onChange={handleChange}
+                      />
                     </div>
-                    {/* {assword repeat} */}
-                    <div className="w-full p-2">
+                    {/* password repeat} */}
+                    {/* <div className="w-full p-2">
                       <input type="password" placeholder="Repeat Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
-                    </div>
-                    <div className="w-full p-2">
+                    </div> */}
+                    {/*  */}
+                    {/* <div className="w-full p-2">
                       <div className="flex items-start">
                         <div className="mr-2">
                           <input id="custom-checkbox1" type="checkbox" name="confirm" defaultValue="yes" className="get(checkbox-form.class)" />
                         </div>
                         <label htmlFor="custom-checkbox1" className="text-sm text-gray-500 font-medium">By signing up, you agree to our Terms, Data Policy and Cookies Policy.</label>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="w-full p-2">
-                      <div className="mb-4">
+                      <button type='submit'>
+                        Submit
+                      </button>
+                      {/* <div className="mb-4">
                         <a href="#" className="group relative flex justify-center w-full text-center">
                           <span className="relative z-10 flex justify-center w-full px-4 py-3 font-medium text-white border border-darksky-900">Get started</span>
                           <span className="absolute top-1 left-1 w-full h-full bg-darksky-500 group-hover:bg-darksky-600 group-focus:bg-darksky-700 transition duration-200" />
@@ -80,9 +152,12 @@ const SignUp = () => {
                         <a href="#" className="group relative flex justify-center w-full text-center">
                           <span className="absolute top-1 left-1 w-full h-full bg-darksky-50 group-hover:bg-darksky-100 group-focus:bg-darksky-100 transition duration-200" />
                         </a>
-                      </div>
+                      </div> */}
                       <div className="text-center">
-                        <p className="text-sm text-gray-500 font-medium">Already have an account? <a href="#signin" className="inline-block text-sm text-gray-700 hover:text-gray-900 font-semibold">Sign in</a></p>
+                        <p className="text-sm text-gray-500 font-medium">Already have an account? 
+                          {/* <a href="#signin" className="inline-block text-sm text-gray-700 hover:text-gray-900 font-semibold">Sign in</a> */}
+                          <Link to="/" className='inline-block text-sm text-gray-700 hover:text-gray-900 font-semibold'>Sign In</Link>
+                        </p>
                       </div>
                     </div>
                   </div>
