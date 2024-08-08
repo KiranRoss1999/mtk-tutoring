@@ -1,6 +1,9 @@
 [
     {
         "firstName": "Mitra",
-        "lastName"
+        "lastName": "Ahmadi",
+        "email": "mitraahmadi129@gmail.com",
+        "password": "Kittens101",
+        "isTutor": "true"
     }
 ]
