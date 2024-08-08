@@ -1,4 +1,43 @@
-const Login = () => {
+import {useState} from 'react';
+import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import {LOGIN} from '../utils/mutations';
+import Auth from '../utils/auth';
+
+const Login = (props) => {
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [login, {error}] = useMutation(LOGIN);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const mutationResponse = await login({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        }
+      });
+
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (error) {
+      console.log('There was an error with login.', error);
+    }
+  };
+
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <div>
       <section className="overflow-hidden">
@@ -26,19 +65,34 @@ const Login = () => {
               <h3 className="mb-5 text-3xl text-gray-500 font-semibold">Sign In</h3>
               <p className="mb-8 text-base text-gray-300 font-medium">Welcome back! Ready to find your perfect tutor and achieve your learning goals? Sign in to book your next session now!</p>
               {/* Start of Form */}
-              <form action="#">
+              <form onSubmit={handleFormSubmit}>
                 <div className="flex flex-wrap -m-3">
-                  {/* First Name */}
+                  {/* Email*/}
                   <div className="w-full p-3">
-                    <label htmlFor="default-label-1" className="mb-2 inline-block text-xs text-gray-300 font-medium">First Name</label>
-                    <input type="text" placeholder="First Name" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                    <label htmlFor="default-label-1" className="mb-2 inline-block text-xs text-gray-300 font-medium">Email</label>
+                    <input 
+                      type="email" 
+                      placeholder="Email" 
+                      name='email'
+                      id='email'
+                      onChange={handleChange}
+                      className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" 
+                    />
                   </div>
                   {/* Last Name */}
                   <div className="w-full p-3">
                     <label htmlFor="default-label-2" className="mb-2 inline-block text-xs text-gray-300 font-medium">Password</label>
-                    <input type="password" placeholder="Password" className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" />
+                    <input 
+                      type="password" 
+                      placeholder="Password"
+                      name='password'
+                      id='pwd'
+                      onChange={handleChange} 
+                      className="flex w-full px-4 py-3 text-base font-medium disabled:bg-white placeholder-gray-500 disabled:placeholder-gray-300 outline-none border border-darksky-900 active:border-darksky-600 disabled:border-gray-200" 
+                    />
                   </div>
 
+                  {/* remember me check box and forgot password */}
                   <div className="w-full p-3">
                     <div className="flex flex-wrap items-center justify-between -m-2">
                       <div className="w-auto p-2">
@@ -53,7 +107,10 @@ const Login = () => {
                     </div>
                   </div>
                   <div className="w-full p-3">
-                    <div className="mb-4">
+                    <button type="submit">
+                      Login
+                    </button> 
+                    {/* <div className="mb-4">
                       <a href="#" className="group relative flex justify-center w-full text-center">
                         <span className="relative z-10 flex justify-center w-full px-4 py-3 font-medium text-white border border-darksky-900">Sign In</span>
                         <span className="absolute top-1 left-1 w-full h-full bg-darksky-500 group-hover:bg-darksky-600 group-focus:bg-darksky-700 transition duration-200" />
@@ -73,9 +130,14 @@ const Login = () => {
                       <a href="#" className="group relative flex justify-center w-full text-center">
                         <span className="absolute top-1 left-1 w-full h-full bg-darksky-50 group-hover:bg-darksky-100 group-focus:bg-darksky-100 transition duration-200" />
                       </a>
-                    </div>
+                    </div> */}
                     <div className="text-center">
-                      <p className="text-sm text-gray-500 font-medium">Don’t have an account? <a href="#signup" className="inline-block text-sm text-gray-700 hover:text-gray-900 font-semibold">Sign up</a></p>
+                      <p className="text-sm text-gray-500 font-medium">Don't have an account? 
+                        {/* <a href="#signup" className="inline-block text-sm text-gray-700 hover:text-gray-900 font-semibold">Sign up</a> */}
+                        <Link to="/signup" className="inline-block text-sm text-gray-700 hover:text-gray-900 font-semibold">
+                          Sign Up
+                        </Link>
+                      </p>
                     </div>
                   </div>
                 </div>
