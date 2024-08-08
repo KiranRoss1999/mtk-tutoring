@@ -23,49 +23,11 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  pricing: [
-    {
-      oneLesson: {
-        type: Number,
-        required: true,
-      },
-      tenLessons: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
-  availability: [
-    {
-      day: {
-        type: String,
-        required: true,
-        enum: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-      },
-      timeSlots: [
-        {
-          startTime: {
-            type: String,
-            required: true,
-            match: [/^([01]\d|2[0-3]):([0-5]\d)$/, "Must match HH:MM format"],
-          },
-          endTime: {
-            type: String,
-            required: true,
-            match: [/^([01]\d|2[0-3]):([0-5]\d)$/, "Must match HH:MM format"],
-          },
-        },
-      ],
-    },
-  ],
+  isTutor: {
+    type: Boolean,
+    require: true,
+    default: false,
+  },
 });
 
 userSchema.pre("save", async function (next) {
