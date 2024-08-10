@@ -1,28 +1,82 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import {useMutation} from '@apollo/client';
+import {ADD_USER} from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Signup = () => {
+  const [formState, setFormState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  }); 
+
+  const [addUser] = useMutation(ADD_USER);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    const mutationResponse = await addUser({
+      variables: {
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        email: formState.email,
+        password: formState.password,
+      },
+    });
+
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+  };
+
+  const handleChange = (event) => {
+    const {name, value }= event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <div className="mx-auto bg-green-100 flex items-center justify-center min-h-screen max-w-screen-2xl p-4 relative isolate">
       <div className="w-full p-8 max-w-lg bg-green-800 rounded-3xl border-0">
         <p className="text-center text-4xl font-bold tracking-tight mb-10 text-white">Sign up</p>
         <p className="text-lg text-center text-white mb-10">Enter your details to sign up</p>
-        <form className="mt-10">
+        <form onSubmit={handleFormSubmit} className="mt-10">
           <div className="space-y-5">
             <input 
-              type="text" 
-              placeholder="Enter name" 
+              type="firstName"
+              name='firstName'
+              id='firstName' 
+              placeholder="Enter first name" 
               className="border border-gray-200 p-3 focus:ring-1 focus:ring-gray-600 focus:outline-none w-full rounded-lg bg-white"
+              onChange={handleChange}
             />
             <input 
-              type="text" 
+              type="lastName"
+              name='lastName'
+              id='lastName' 
+              placeholder="Enter last name" 
+              className="border border-gray-200 p-3 focus:ring-1 focus:ring-gray-600 focus:outline-none w-full rounded-lg bg-white"
+              onChange={handleChange}
+            />
+            <input 
+              type="email"
+              name='email'
+              id='email' 
               placeholder="Enter email" 
               className="border border-gray-200 p-3 focus:ring-1 focus:ring-gray-600 focus:outline-none w-full rounded-lg bg-white"
+              onChange={handleChange}
             />
             <input 
               type="password" 
+              name='password'
+              id='pwd'
               placeholder="Enter password" 
               className="border border-gray-200 p-3 focus:ring-1 focus:ring-gray-600 focus:outline-none w-full rounded-lg bg-white"
+              onChange={handleChange}
             />
           </div>
           <button 

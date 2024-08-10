@@ -1,4 +1,5 @@
 import createDates from "../../utils/createDates";
+import {useState} from 'react';
 
 const days = createDates();
 
@@ -64,7 +65,7 @@ const Calendar = () => {
             {days.map((day) => {
               return (
                 <th key={day.day} className='border px-6 py-2'>
-                  {day.weekday}
+                  {day.weekday} {day.day}/{day.month}
                 </th>
               )
             })}
