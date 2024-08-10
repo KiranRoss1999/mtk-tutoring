@@ -22,7 +22,7 @@ const typeDefs = `
     _id: ID
     user: User
     tutor: Tutor
-    timeslot: TimeSlot
+    timeslot: [TimeSlot]
     dateBooked: String
   }
 

@@ -12,18 +12,18 @@ const bookingSchema = new Schema({
     ref: "Tutor",
     required: true,
   },
-  timeSlot: {
-    startTime: {
-      type: String,
-      required: true,
-      match: [/^([01]\d|2[0-3]):([0-5]\d)$/, "Must match HH:MM format"],
+  timeSlot: [
+    {
+      startTime: {
+        type: String,
+        required: true,
+      },
+      endTime: {
+        type: String,
+        required: true,
+      },
     },
-    endTime: {
-      type: String,
-      required: true,
-      match: [/^([01]\d|2[0-3]):([0-5]\d)$/, "Must match HH:MM format"],
-    },
-  },
+  ],
 });
 
 const Booking = model("Booking", bookingSchema);

@@ -1,5 +1,8 @@
 import createDates from "../../utils/createDates";
 import {useState} from 'react';
+// import Prompt from "../../utils/prompt";
+// import {useMutation} from '@apollo/client';
+// import {SAVE_BOOKING} from '../../utils/mutations';
 
 const days = createDates();
 
@@ -55,6 +58,24 @@ const timeslots = [
 ];
 
 const Calendar = () => {
+  const [saveBooking] = useMutation(SAVE_BOOKING);
+
+  const handleClick = async (event) => {
+    let bookingMonth = event.target.getAttribute('data-month');
+    let bookingDay = event.target.getAttribute('data-day');
+    // const mutationResponse = await saveBooking({
+    //   variables: {
+    //     dateBooked: event.target.id,
+    //     timeSlot: event.target.parentNode.id
+    //   },
+    // });
+    console.log(bookingDay);
+    console.log(bookingMonth);
+    console.log(event.target.id);
+    // console.log(event.target.parentNode.id);
+
+  };
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <h3>Calendar</h3>
@@ -79,44 +100,44 @@ const Calendar = () => {
                     {timeslot.time}
                   </th>
                   {/* First Column */}
-                  <td  id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[0].weekday} className="bg-gray-50">
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[0].month} data-day={days[0].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Second Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[1].weekday} >
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[1].month} data-day={days[1].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Third Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[2].weekday} >
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time}  data-month={days[2].month} data-day={days[2].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Fourth Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[3].weekday} >
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[3].month} data-day={days[3].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Fifth Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[4].weekday} >
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[4].month} data-day={days[4].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Sixth Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[5].weekday} >
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[5].month} data-day={days[5].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Seventh Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[6].weekday} >
+                    <button id={timeslot.time} data-month={days[6].month} data-day={days[6].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>

@@ -32,10 +32,12 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Tutor",
   },
-  booking: {
-    type: Schema.Types.ObjectId,
-    ref: "Booking",
-  },
+  bookings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Booking",
+    },
+  ],
 });
 
 userSchema.pre("save", async function (next) {
