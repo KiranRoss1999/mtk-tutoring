@@ -7,7 +7,7 @@ import './index.css';
 import App from './App.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
-import Calendar from './pages/TestCalendar.jsx';
+import Bookings from './pages/Bookings.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: 'test',
-        element: <Calendar />
+        path: 'bookings',
+        element: <Bookings />
       },
     ]
   }
