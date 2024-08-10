@@ -10,10 +10,13 @@ const resolvers = {
       throw AuthenticationError;
     },
     users: async () => {
-      return await User.find({});
+      return await User.find({}).populate("tutor");
     },
     tutors: async () => {
-      return await Tutor.find({});
+      return await Tutor.find({})
+        .populate("user")
+        .populate("pricing")
+        .populate("availability");
     },
   },
   Mutation: {

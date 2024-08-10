@@ -11,8 +11,8 @@ const typeDefs = `
   type Tutor {
     _id: ID
     user: User
-    prices: [Pricing]
-    availabilities: [Availability]
+    pricing: [Pricing]
+    availability: [Availability]
   }
 
   type Pricing {

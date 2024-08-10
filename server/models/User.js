@@ -28,6 +28,10 @@ const userSchema = new Schema({
     require: true,
     default: false,
   },
+  tutor: {
+    type: Schema.Types.ObjectId,
+    ref: "Tutor",
+  },
 });
 
 userSchema.pre("save", async function (next) {
