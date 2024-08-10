@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
-    <div>
-      <nav className="w-full">
+    <div className="min-h-screen flex flex-col">
+      {/* Navigation */}
+      <nav className="w-full bg-gray-800">
         <div className="md:hidden mobile-menu">
           <div className="flex flex-col">
             <button className="h-9 w-24 text-gray-600 bg-white border-2 border-white flex items-center justify-center text-lg font-normal mt-2 mx-auto rounded-lg">
@@ -19,15 +20,16 @@ const HomePage = () => {
         </div>
       </nav>
 
-      <section className="bg-white text-black relative isolate">
+      {/* Main Section */}
+      <section className="bg-white text-black flex-grow relative">
         <span className="absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(100%_100%_at_bottom_center,white,transparent)]">
-            <defs>
-              <pattern id="a-new-header02" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(12)">
-                <rect x="0" y="0" width="100%" height="100%" fill="hsla(0,0%,100%,1)"/>
-                <path d="M15 5h10v30H15zM35-5V5H5V-5zM35 35v10H5V35zM35-15h10v30H35zM55 15v10H25V15zM15 15v10h-30V15zM35 25h10v30H35zM-5 25H5v30H-5zM-5-15H5v30H-5z" strokeWidth="0.1" className="stroke-gray-900" fill="none"/>
-              </pattern>
-            </defs>
-            <rect width="800%" height="800%" fill="url(#a-new-header02)"/>
+          <defs>
+            <pattern id="a-new-header02" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(12)">
+              <rect x="0" y="0" width="100%" height="100%" fill="hsla(0,0%,100%,1)"/>
+              <path d="M15 5h10v30H15zM35-5V5H5V-5zM35 35v10H5V35zM35-15h10v30H35zM55 15v10H25V15zM15 15v10h-30V15zM35 25h10v30H35zM-5 25H5v30H-5zM-5-15H5v30H-5z" strokeWidth="0.1" className="stroke-gray-900" fill="none"/>
+            </pattern>
+          </defs>
+          <rect width="800%" height="800%" fill="url(#a-new-header02)"/>
         </span>
         <header className="absolute inset-x-0 top-0 z-50">
           <div role="dialog" aria-modal className="hidden">
@@ -36,7 +38,7 @@ const HomePage = () => {
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">OUR LOGO</span>
-                  <img src="src\assets\simple-assets\logos\logo.svg" alt="Logo" className="h-8 w-auto"/>
+                  <img src="src/assets/simple-assets/logos/logo.svg" alt="Logo" className="h-8 w-auto"/>
                 </a>
                 <button type="button" className="font-normal text-gray-700 rounded-md p-2.5">
                   <span className="sr-only">Close menu</span>
@@ -65,7 +67,8 @@ const HomePage = () => {
         </header>
       </section>
 
-      <div className="w-full bg-green-100 relative overflow-hidden ">
+      {/* Content Section */}
+      <div className="w-full bg-green-100 flex-grow relative overflow-hidden">
         <div className="flex items-center justify-between h-24 p-8 bg-green-800 max-w-7xl mx-auto">
           <a href="#_" className="text-2xl font-extrabold text-white">MTK Tutoring</a>
           <nav className="hidden space-x-8 md:flex items-center justify-center font-light text-green-200">
