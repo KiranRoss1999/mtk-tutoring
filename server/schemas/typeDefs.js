@@ -5,23 +5,29 @@ const typeDefs = `
     lastName: String
     email: String
     password: String
+    isTutor: Boolean
   }
 
   type Tutor {
     _id: ID
     user: User
-    pricing: [Pricing]
-    availability: [Availability]
+    prices: [Pricing]
+    availabilities: [Availability]
   }
 
-  type TimeSlot {
-    startTime: String
-    endTime: String
+  type Pricing {
+    oneLesson: Float
+    tenLessons: Float
   }
 
   type Availability {
     day: String
-    timeSlots: [TimeSlot]
+    timeslots: [Timeslot]
+  }
+
+  type Timeslot {
+    startTime: String
+    endTime: String
   }
 
   type Auth {
@@ -33,6 +39,7 @@ const typeDefs = `
     me: User
     tutor(id: ID!): Tutor
     tutors: [Tutor]
+    users: [User]
   }
 
   type Mutation {

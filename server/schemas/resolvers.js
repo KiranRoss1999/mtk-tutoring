@@ -9,6 +9,12 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    users: async () => {
+      return await User.find({});
+    },
+    tutors: async () => {
+      return await Tutor.find({});
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
