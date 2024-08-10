@@ -6,11 +6,11 @@ const cleanDB = require("./cleanDB");
 
 db.once("open", async () => {
   await cleanDB("User", "users");
+  // await cleanDB("Tutor", "tutors");
 
-  await cleanDB("Tutor", "tutors");
-
-  await User.create(userSeeds);
-  await Tutor.create(tutorSeeds);
+  // using insertMany method instead of create as more appropriate for large datasets
+  await User.insertMany(userSeeds);
+  // await Tutor.insertMany(tutorSeeds);
 
   console.log("Completed! :D");
   process.exit(0);
