@@ -5,6 +5,29 @@ const typeDefs = `
     lastName: String
     email: String
     password: String
+    isTutor: Boolean
+  }
+
+  type Tutor {
+    _id: ID
+    user: User
+    prices: [Pricing]
+    availabilities: [Availability]
+  }
+
+  type Pricing {
+    oneLesson: Float
+    tenLessons: Float
+  }
+
+  type Availability {
+    day: String
+    timeslots: [Timeslot]
+  }
+
+  type Timeslot {
+    startTime: String
+    endTime: String
   }
 
   type Auth {
@@ -14,6 +37,9 @@ const typeDefs = `
 
   type Query {
     me: User
+    tutor(id: ID!): Tutor
+    tutors: [Tutor]
+    users: [User]
   }
 
   type Mutation {

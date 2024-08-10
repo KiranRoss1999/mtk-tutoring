@@ -1,13 +1,19 @@
-const {User} = require('../models');
-const {signToken, AuthenticationError} = require('../utils/auth');
+const { User, Tutor } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-      if(context.user) {
-        return User.findOne({_id: context.user._id});
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
+    },
+    users: async () => {
+      return await User.find({});
+    },
+    tutors: async () => {
+      return await Tutor.find({});
     },
   },
   Mutation: {
@@ -17,22 +23,22 @@ const resolvers = {
 
       return { token, user };
     },
-    login: async(parent, {email, password}) => {
-      const user = await User.findOne({email});
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-      if(!user) {
+      if (!user) {
         throw AuthenticationError;
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
-      if(!correctPw) {
+      if (!correctPw) {
         throw AuthenticationError;
       }
 
       const token = signToken(user);
 
-      return {token, user};
+      return { token, user };
     },
   },
 };
