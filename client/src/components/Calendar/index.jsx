@@ -1,5 +1,6 @@
 import createDates from "../../utils/createDates";
 import {useState} from 'react';
+import Prompt from "../../utils/prompt";
 
 const days = createDates();
 
@@ -80,43 +81,43 @@ const Calendar = () => {
                   </th>
                   {/* First Column */}
                   <td  id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[0].weekday} className="bg-gray-50">
+                    <button id={days[0].weekday} onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
                   {/* Second Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[1].weekday} >
+                    <button id={days[1].weekday}  onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
                   {/* Third Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[2].weekday} >
+                    <button id={days[2].weekday}  onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
                   {/* Fourth Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[3].weekday} >
+                    <button id={days[3].weekday} onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
                   {/* Fifth Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[4].weekday} >
+                    <button id={days[4].weekday} onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
                   {/* Sixth Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[5].weekday} >
+                    <button id={days[5].weekday} onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
                   {/* Seventh Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[6].weekday} >
+                    <button id={days[6].weekday} onClick={() => Prompt()}>
                       Book
                     </button>
                   </td>
