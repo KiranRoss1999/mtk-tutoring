@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Navigation */}
-      <nav className="w-full bg-gray-800">
+    <div>
+      <nav className="w-full">
         <div className="md:hidden mobile-menu">
           <div className="flex flex-col">
             <button className="h-9 w-24 text-gray-600 bg-white border-2 border-white flex items-center justify-center text-lg font-normal mt-2 mx-auto rounded-lg">
@@ -20,25 +19,26 @@ const HomePage = () => {
         </div>
       </nav>
 
-      {/* Main Section */}
-      <section className="bg-white text-black flex-grow relative">
+      <section className="bg-white text-black relative isolate">
         <span className="absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(100%_100%_at_bottom_center,white,transparent)]">
-          <defs>
-            <pattern id="a-new-header02" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(12)">
-              <rect x="0" y="0" width="100%" height="100%" fill="hsla(0,0%,100%,1)"/>
-              <path d="M15 5h10v30H15zM35-5V5H5V-5zM35 35v10H5V35zM35-15h10v30H35zM55 15v10H25V15zM15 15v10h-30V15zM35 25h10v30H35zM-5 25H5v30H-5zM-5-15H5v30H-5z" strokeWidth="0.1" className="stroke-gray-900" fill="none"/>
-            </pattern>
-          </defs>
-          <rect width="800%" height="800%" fill="url(#a-new-header02)"/>
+            <svg>
+            <defs>
+              <pattern id="a-new-header02" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(12)">
+                <rect x="0" y="0" width="100%" height="100%" fill="hsla(0,0%,100%,1)"/>
+                <path d="M15 5h10v30H15zM35-5V5H5V-5zM35 35v10H5V35zM35-15h10v30H35zM55 15v10H25V15zM15 15v10h-30V15zM35 25h10v30H35zM-5 25H5v30H-5zM-5-15H5v30H-5z" strokeWidth="0.1" className="stroke-gray-900" fill="none"/>
+              </pattern>
+            </defs>
+            <rect width="800%" height="800%" fill="url(#a-new-header02)"/>
+            </svg>
         </span>
-        <header className="absolute inset-x-0 top-0 z-50">
+        <header className="w-[100vw] absolute inset-x-0 top-0 z-50">
           <div role="dialog" aria-modal className="hidden">
             <div className="fixed inset-0 z-50"></div>
             <div className="w-full bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 fixed inset-y-0 right-0 z-50 overflow-y-auto">
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">OUR LOGO</span>
-                  <img src="src/assets/simple-assets/logos/logo.svg" alt="Logo" className="h-8 w-auto"/>
+                  <img src="src\assets\simple-assets\logos\logo.svg" alt="Logo" className="h-8 w-auto"/>
                 </a>
                 <button type="button" className="font-normal text-gray-700 rounded-md p-2.5">
                   <span className="sr-only">Close menu</span>
@@ -67,21 +67,26 @@ const HomePage = () => {
         </header>
       </section>
 
-      {/* Content Section */}
-      <div className="w-full bg-green-100 flex-grow relative overflow-hidden">
-        <div className="flex items-center justify-between h-24 p-8 bg-green-800 max-w-7xl mx-auto">
+      <div className="w-[100vw] h-[100vh] bg-green-100 relative overflow-hidden mx-auto ">
+        <div className="flex items-center justify-between h-24 p-8 bg-green-800 mx-auto">
           <a href="#_" className="text-2xl font-extrabold text-white">MTK Tutoring</a>
           <nav className="hidden space-x-8 md:flex items-center justify-center font-light text-green-200">
-            <a href="#_" className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Home</a>
-            <a href="#_" className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Pricing</a>
-            <a href="#_" className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Meet The Team</a>
+          <Link to="/"  >
+            <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Home</span>
+            </Link>
+            <Link to="/pricing"  >
+            <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Pricing</span>
+            </Link>
+            <Link to="/meettheteam"  >
+            <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Meet The Team</span>
+            </Link>
             <Link to="/signup">
-              <a className="text-xl text-white bg-green-700 border border-green-700 rounded-md hover:bg-green-600">Signup</a>
+              <span className="text-xl text-white bg-green-700 border border-green-700 rounded-md hover:bg-green-600">Signup</span>
             </Link>
           </nav>
         </div>
         <div className="pt-10 px-8 max-w-7xl mx-auto relative">
-          <div className="absolute top-0 right-0 hidden md:block w-full h-full bg-green-800 transform scale-100 translate-x-1/2 translate-y-20 -rotate-12 opacity-90"></div>
+          <div className="absolute top-0 right-0 hidden md:block w-full h-full bg-green-800 transform scale-90 translate-x-1/2 translate-y-20 -rotate-12 opacity-90"></div>
           <div className="flex flex-col items-center md:flex-row">
             <div className="flex flex-col items-start w-full md:w-1/2 md:pr-16">
               <p className="text-sm font-medium bg-green-800 text-white rounded-md px-3 py-1.5">Starting at a low $49.99!</p>

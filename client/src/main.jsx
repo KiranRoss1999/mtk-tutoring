@@ -8,6 +8,7 @@ import App from './App.jsx';
 import Home from './pages/HomePage.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
+import MeetTheTeam from './pages/meettheteam.jsx';
 import Bookings from './pages/Bookings.jsx';
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login /> // Adjust path as needed
+      },
+      {
+        path: 'meettheteam',
+        element: <MeetTheTeam /> // Adjust path as needed
       },
       {
         path: 'signup',
