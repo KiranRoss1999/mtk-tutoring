@@ -1,6 +1,6 @@
 [
     {
-        "user": "ObjectId('userId1')",
+        "user": 1,
         "pricing": [
             {
                 "oneLesson": 60,
@@ -20,7 +20,23 @@
                         "endTime": "17:00"
                     }
                 ]
-                
+            },
+            {
+                "day": "Thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "11:00",
+                        "endTime": "12:00"
+                    },
+                    {
+                        "startTime": "12:00",
+                        "endTime": "13:00"
+                    },
+                    {
+                        "startTime": "14:00",
+                        "endTime": "15:00"
+                    }
+                ]
             }
         ]
     }
