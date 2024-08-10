@@ -1,4 +1,5 @@
 const User = require("./User");
-const Tutor = require("./Tutor");
+// const Tutor = require("./Tutor");
+const Booking = require('./Booking');
 
-module.exports = { User, Tutor };
+module.exports = { User, Booking };

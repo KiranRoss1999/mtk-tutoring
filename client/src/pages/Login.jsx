@@ -23,7 +23,7 @@ const Login = () => {
       });
 
       const token = mutationResponse.data.login.token;
-      Auth.login();
+      Auth.login(token);
 
     } catch (error) {
       console.log('There was an error in login.', error);

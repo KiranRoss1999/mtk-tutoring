@@ -1,6 +1,8 @@
 import createDates from "../../utils/createDates";
 import {useState} from 'react';
 import Prompt from "../../utils/prompt";
+import {useMutation} from '@apollo/client';
+import {SAVE_BOOKING} from '../../utils/mutations';
 
 const days = createDates();
 
@@ -56,6 +58,20 @@ const timeslots = [
 ];
 
 const Calendar = () => {
+  const [saveBooking] = useMutation(SAVE_BOOKING);
+
+  const handleClick = async (event) => {
+    const mutationResponse = await saveBooking({
+      variables: {
+        dateBooked: event.target.id,
+        timeSlot: event.target.parentNode.id
+      },
+    });
+    // console.log(event.target.id);
+    // console.log(event.target.parentNode.id);
+
+  };
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <h3>Calendar</h3>
@@ -81,7 +97,7 @@ const Calendar = () => {
                   </th>
                   {/* First Column */}
                   <td  id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[0].weekday} onClick={() => Prompt()}>
+                    <button id={days[0].weekday} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>

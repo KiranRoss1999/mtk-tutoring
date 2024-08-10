@@ -1,4 +1,4 @@
-const Prompt = (day, month, time) => {
+const Prompt = () => {
   let confirmation = confirm('Do you want to book this session?');
 
   return confirmation

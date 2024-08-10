@@ -31,3 +31,15 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const SAVE_BOOKING = gql `
+  mutation saveBooking(
+    $dateBooked: String!, 
+    $timeSlot: String!
+  ) {
+    saveBooking(
+      dateBooked: $dateBooked,
+      timeSlot: $timeSlot
+    )
+  }
+`;

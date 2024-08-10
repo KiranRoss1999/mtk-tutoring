@@ -1,4 +1,4 @@
-const { User, Tutor } = require("../models");
+const { User, Booking } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -8,12 +8,6 @@ const resolvers = {
         return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
-    },
-    users: async () => {
-      return await User.find({});
-    },
-    tutors: async () => {
-      return await Tutor.find({});
     },
   },
   Mutation: {
@@ -39,6 +33,15 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveBooking: async (parent, {dateBooked, timeSlot}, context) => {
+      if(context.user) {
+        const booking = new Booking({dateBooked: dateBooked, timeSlot: timeSlot});
+
+        await User.findByIdAndUpdate(context.user_id, {$push: {bookings: booking}});
+      }
+
+      throw AuthenticationError;
     },
   },
 };
