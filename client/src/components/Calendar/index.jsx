@@ -61,13 +61,17 @@ const Calendar = () => {
   const [saveBooking] = useMutation(SAVE_BOOKING);
 
   const handleClick = async (event) => {
-    const mutationResponse = await saveBooking({
-      variables: {
-        dateBooked: event.target.id,
-        timeSlot: event.target.parentNode.id
-      },
-    });
-    // console.log(event.target.id);
+    let bookingMonth = event.target.getAttribute('data-month');
+    let bookingDay = event.target.getAttribute('data-day');
+    // const mutationResponse = await saveBooking({
+    //   variables: {
+    //     dateBooked: event.target.id,
+    //     timeSlot: event.target.parentNode.id
+    //   },
+    // });
+    console.log(bookingDay);
+    console.log(bookingMonth);
+    console.log(event.target.id);
     // console.log(event.target.parentNode.id);
 
   };
@@ -96,44 +100,44 @@ const Calendar = () => {
                     {timeslot.time}
                   </th>
                   {/* First Column */}
-                  <td  id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[0].weekday} onClick={(event) => handleClick(event)}>
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[0].month} data-day={days[0].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Second Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[1].weekday}  onClick={() => Prompt()}>
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[1].month} data-day={days[1].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Third Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[2].weekday}  onClick={() => Prompt()}>
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time}  data-month={days[2].month} data-day={days[2].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Fourth Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[3].weekday} onClick={() => Prompt()}>
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[3].month} data-day={days[3].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Fifth Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[4].weekday} onClick={() => Prompt()}>
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[4].month} data-day={days[4].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Sixth Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[5].weekday} onClick={() => Prompt()}>
+                  <td className="px-5 py-3 ">
+                    <button id={timeslot.time} data-month={days[5].month} data-day={days[5].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
                   {/* Seventh Column */}
                   <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={days[6].weekday} onClick={() => Prompt()}>
+                    <button id={timeslot.time} data-month={days[6].month} data-day={days[6].day} onClick={(event) => handleClick(event)}>
                       Book
                     </button>
                   </td>
