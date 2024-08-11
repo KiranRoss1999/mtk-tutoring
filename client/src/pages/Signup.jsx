@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Nav from '../components/Nav';
 
 const Signup = () => {
   return (
+    <div>
+      
+    <Nav />
     <div className="mx-auto bg-green-100 flex items-center justify-center min-h-screen max-w-screen-2xl p-4 relative isolate">
       <div className="w-full p-8 max-w-lg bg-green-800 rounded-3xl border-0">
         <p className="text-center text-4xl font-bold tracking-tight mb-10 text-white">Sign up</p>
@@ -37,6 +41,7 @@ const Signup = () => {
           <Link to="/login" className="underline font-semibold pl-2">Sign in</Link>
         </p>
       </div>
+    </div>
     </div>
   );
 };

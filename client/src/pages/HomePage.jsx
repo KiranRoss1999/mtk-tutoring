@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Nav from '../components/Nav';
 
 const HomePage = () => {
   return (
-    <div>
-      <nav className="w-full">
+    <div>  
+     <nav className="w-full">
         <div className="md:hidden mobile-menu">
           <div className="flex flex-col">
             <button className="h-9 w-24 text-gray-600 bg-white border-2 border-white flex items-center justify-center text-lg font-normal mt-2 mx-auto rounded-lg">
@@ -68,23 +69,7 @@ const HomePage = () => {
       </section>
 
       <div className="w-[100vw] h-[100vh] bg-green-100 relative overflow-hidden mx-auto ">
-        <div className="flex items-center justify-between h-24 p-8 bg-green-800 mx-auto">
-          <a href="#_" className="text-2xl font-extrabold text-white">MTK Tutoring</a>
-          <nav className="hidden space-x-8 md:flex items-center justify-center font-light text-green-200">
-          <Link to="/"  >
-            <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Home</span>
-            </Link>
-            <Link to="/pricing"  >
-            <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Pricing</span>
-            </Link>
-            <Link to="/meettheteam"  >
-            <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Meet The Team</span>
-            </Link>
-            <Link to="/signup">
-              <span className="text-xl text-white bg-green-700 border border-green-700 rounded-md hover:bg-green-600">Signup</span>
-            </Link>
-          </nav>
-        </div>
+     <Nav />
         <div className="pt-10 px-8 max-w-7xl mx-auto relative">
           <div className="absolute top-0 right-0 hidden md:block w-full h-full bg-green-800 transform scale-90 translate-x-1/2 translate-y-20 -rotate-12 opacity-90"></div>
           <div className="flex flex-col items-center md:flex-row">

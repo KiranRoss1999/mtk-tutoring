@@ -1,7 +1,10 @@
 import React from 'react';
+import Nav from '../components/Nav';
 
 const Login = () => {
   return (
+    <div>
+  <Nav />
     <div className="mx-auto bg-green-100 flex items-center justify-center min-h-screen max-w-screen-2xl p-4 relative isolate">
       <div className="w-full p-8 max-w-lg bg-green-800 rounded-3xl">
         <p className="text-center text-4xl font-bold tracking-tight mb-10 text-white">Sign in</p>
@@ -33,6 +36,7 @@ const Login = () => {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };
