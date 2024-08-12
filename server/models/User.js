@@ -25,23 +25,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-test-models
   bookings: [Booking.schema],
-
-  isTutor: {
-    type: Boolean,
-    require: true,
-    default: false,
-  },
-  tutor: {
-    type: Schema.Types.ObjectId,
-    ref: "Tutor",
-  },
-  booking: {
-    type: Schema.Types.ObjectId,
-    ref: "Booking",
-  },
-
 });
 
 userSchema.pre("save", async function (next) {
