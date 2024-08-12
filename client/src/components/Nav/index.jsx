@@ -47,6 +47,17 @@ function Nav() {
       <Link to="/meettheteam"  >
       <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Meet The Team</span>
       </Link>
+
+      {Auth.loggedIn() &&
+      <Link to="/profile"  >
+      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">My profile</span>
+      </Link>
+}
+      {Auth.loggedIn() &&
+      <Link to="/calendar"  >
+      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Schedule a booking</span>
+      </Link>     
+}
       {showNavigation()}
     </nav>
   </div>

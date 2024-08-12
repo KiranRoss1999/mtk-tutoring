@@ -29,3 +29,15 @@ export const QUERY_ME = gql`
     }
   } 
 `;
+
+export const QUERY_BOOKINGS = gql`
+ query GetBookings {
+    bookings {
+        _id
+        userId
+        bookedDay
+        bookedMonth
+        timeSlot
+      }
+  } 
+`;

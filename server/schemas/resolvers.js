@@ -5,10 +5,19 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('bookings');
+        const user = await User.findById(context.user._id).populate("bookings");
 
         return user;
       }
+      throw AuthenticationError;
+    },
+    bookings: async (parent, args, contex) => {
+      if (contex.user) {
+        const bookings = await Booking.find({});
+
+        return bookings;
+      }
+
       throw AuthenticationError;
     },
   },
@@ -36,20 +45,41 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBooking: async (parent, {bookedDay, bookedMonth, timeSlot}, context) => {
-      if(context.user) {
-        
-        const booking = new Booking ({
-          bookedDay: bookedDay, 
-          bookedMonth: bookedMonth, 
-          timeSlot: timeSlot
+    saveBooking: async (
+      parent,
+      { bookedDay, bookedMonth, timeSlot },
+      context
+    ) => {
+      if (context.user) {
+        const booking = await Booking.create({
+          userId: context.user._id,
+          bookedDay: bookedDay,
+          bookedMonth: bookedMonth,
+          timeSlot: timeSlot,
         });
 
-        await User.findByIdAndUpdate(context.user_id, {
-            $push: {bookings: booking},
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { bookings: booking },
         });
 
         return booking;
+      }
+
+      throw AuthenticationError;
+    },
+    deleteBooking: async (parent, { bookingId }, context) => {
+      if (context.user) {
+        const deletedBooking = await Booking.findByIdAndDelete(bookingId);
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $pull: {
+            bookings: {
+              _id: bookingId,
+            },
+          },
+        });
+
+        return deletedBooking;
       }
 
       throw AuthenticationError;

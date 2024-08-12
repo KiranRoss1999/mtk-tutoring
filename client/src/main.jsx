@@ -11,6 +11,7 @@ import Signup from './pages/Signup.jsx';
 import MeetTheTeam from './pages/meettheteam.jsx';
 import Bookings from './pages/Bookings.jsx';
 import Profile from './pages/Profile.jsx';
+import Calendar from './pages/Calendar.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,8 +44,12 @@ const router = createBrowserRouter([
         element: <Bookings />
       },
       {
-        path: 'me',
+        path: 'profile',
         element: <Profile />
+      },
+      {
+        path: 'calendar',
+        element: <Calendar />
       },
     ]
   }

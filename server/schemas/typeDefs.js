@@ -23,12 +23,14 @@ const typeDefs = `
 
   type Query {
     user: User
+    bookings: [Booking]
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveBooking(userId: ID!, bookedDay: String!, bookedMonth: String!, timeSlot: String!): Booking
+    saveBooking(userId: String!, bookedDay: String!, bookedMonth: String!, timeSlot: String!): Booking
+    deleteBooking(bookingId: String!): Booking
   }
 `;
 

@@ -1,9 +1,12 @@
 import createDates from "../../utils/createDates";
-import {useState} from 'react';
+import React, { useEffect, useState } from "react";
 import Prompt from "../../utils/prompt";
-import {useMutation, useQuery} from '@apollo/client';
-import {SAVE_BOOKING} from '../../utils/mutations';
-import { QUERY_ME } from "../../utils/queries";
+import "./calendar.css";
+
+import { useMutation, useQuery } from "@apollo/client";
+import { SAVE_BOOKING } from "../../utils/mutations";
+import { QUERY_ME, QUERY_BOOKINGS } from "../../utils/queries";
+import { toast } from "react-toastify";
 
 const days = createDates();
 
@@ -11,6 +14,7 @@ const timeslots = [
   {
     id: 1,
     time: "8:00",
+    shortTime: "8am",
   },
   {
     id: 2,
@@ -58,19 +62,62 @@ const timeslots = [
   },
 ];
 
-const Calendar = () => {
-  const [saveBooking, {error}] = useMutation(SAVE_BOOKING);
+const NewCalendar = () => {
+  const [saveBooking, { error }] = useMutation(SAVE_BOOKING);
 
-  const {data} = useQuery(QUERY_ME);
+  const {
+    data: bookingsData,
+    refetch: refetchBookings,
+    loading: loadingBookings,
+  } = useQuery(QUERY_BOOKINGS);
+  const { data } = useQuery(QUERY_ME);
   let user;
 
-  if(data) {
-    user = data.user
+  if (data) {
+    user = data.user;
   }
 
+
+  useEffect(() => {
+    function onfocus() {
+      refetchBookings();
+    }
+
+    onfocus()
+
+    window.addEventListener("focus", onfocus);
+
+    return () => window.removeEventListener("focus", onfocus);
+  }, []);
+
+  const isBooked = React.useCallback(
+    (day, month, timeSlot) => {
+      const foundBooking = bookingsData?.bookings.find(
+        (booking) =>
+          booking.bookedDay === String(day) &&
+          booking.bookedMonth === String(month) &&
+          booking.timeSlot === String(timeSlot)
+      );
+      if (foundBooking) return true;
+      return false;
+    },
+    [bookingsData]
+  );
+
+  const getBookedColor = React.useCallback(
+    (day, month, timeSlot) => {
+      const foundBooking = isBooked(day, month, timeSlot);
+      if (foundBooking) return "bg-red-500";
+      return ``;
+    },
+    [bookingsData, isBooked]
+  );
+
   const handleClick = async (event) => {
-    let bookedMonth = event.target.getAttribute('data-month');
-    let bookedDay = event.target.getAttribute('data-day');
+    if (loadingBookings) return;
+
+    let bookedMonth = event.target.getAttribute("data-month");
+    let bookedDay = event.target.getAttribute("data-day");
     let timeSlot = event.target.id;
     let userId = user._id;
 
@@ -80,92 +127,125 @@ const Calendar = () => {
           userId: userId,
           bookedDay: bookedDay,
           bookedMonth: bookedMonth,
-          timeSlot: timeSlot
+          timeSlot: timeSlot,
         },
       });
 
+      toast.success("Booked successfully!");
+
+      refetchBookings();
     } catch (error) {
+      toast.error("Something went wrong, while creating booking");
       console.error(error);
     }
-   
-    // console.log(bookedDay);
-    // console.log(bookedMonth);
-    // console.log(timeSlot);
+
+    // console.log(typeof(bookedDay));
+    // console.log(typeof(bookedMonth));
+    // console.log(typeof(timeSlot));
+    // console.log(userId);
+  };
+
+  const handleTimeSlotClick = (dateString, time) => {
+    // const [day, month] = dateString.split('/').map(Number); // Convert to numbers
+    // const isConfirmed = Prompt(day, month, time);
+    // if (isConfirmed) {
+    //   console.log(`Booking confirmed for ${day}/${month} at ${time}`);
+    // } else {
+    //   console.log(`Booking canceled or failed for ${day}/${month} at ${time}`);
+    // }
+    console.log(days);
   };
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h3>Calendar</h3>
-      <table className='table-auto w-full bg-white border border-gray-300'>
-        <thead className='bg-pink-500 text-white'>
-          <tr>
-            <th></th>
-            {days.map((day) => {
-              return (
-                <th key={day.day} className='border px-6 py-2'>
-                  {day.weekday} {day.day}/{day.month}
-                </th>
-              )
-            })}
-          </tr>
-        </thead>
-        <tbody>
-            {timeslots.map((timeslot) => {
-              return (
-                <tr key={timeslot.id} className='border px-6 py-6'>
-                  <th className="px-5 py-3 ">
-                    {timeslot.time}
-                  </th>
-                  {/* First Column */}
-                  <td className="px-5 py-3 ">
-                    <button id={timeslot.time} data-month={days[0].month} data-day={days[0].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                  {/* Second Column */}
-                  <td className="px-5 py-3 ">
-                    <button id={timeslot.time} data-month={days[1].month} data-day={days[1].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                  {/* Third Column */}
-                  <td className="px-5 py-3 ">
-                    <button id={timeslot.time}  data-month={days[2].month} data-day={days[2].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                  {/* Fourth Column */}
-                  <td className="px-5 py-3 ">
-                    <button id={timeslot.time} data-month={days[3].month} data-day={days[3].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                  {/* Fifth Column */}
-                  <td className="px-5 py-3 ">
-                    <button id={timeslot.time} data-month={days[4].month} data-day={days[4].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                  {/* Sixth Column */}
-                  <td className="px-5 py-3 ">
-                    <button id={timeslot.time} data-month={days[5].month} data-day={days[5].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                  {/* Seventh Column */}
-                  <td id={timeslot.time} className="px-5 py-3 ">
-                    <button id={timeslot.time} data-month={days[6].month} data-day={days[6].day} onClick={(event) => handleClick(event)}>
-                      Book
-                    </button>
-                  </td>
-                </tr>
-              )
-            })}
-        </tbody>
-      </table>
-    </div>
+    <div className="shadow-md w-screen h-screen">
+      <section className="calendar-box flex flex-col justify-start align-start bg-gray-300 w-100 m-24 rounded-xl h-auto">
+        <div className="info-head flex flex-row items-center h-28 rounded-xl text-black ml-5 w-100">
+          <span className="header-text basis-full font-bold">
+            Available times for your Tutor:
+          </span>
+          <span className="tutor-name basis-full ml-3 flex-1 font-bold">
+            Tutor Name
+          </span>
+        </div>
+        <div className="dates-box flex flex-row items-center h-28 bg-green-800">
+          {/* {daysOfWeek.map((day, index) => (
+            <div className="flex-1 grow text-center" key={index}>
+              <span className="full-day font-bold">{day.day}</span>
+              <span className="short-day font-bold">{day.shortName}</span>
+              <br /><span className="dates">{datesThisWeek[index].date}</span>
+            </div>
+          ))} */}
 
+          {days.map((day) => {
+            return (
+              <div className="flex-1 grow text-center" key={day.day}>
+                <span className="font-bold">{day.weekday}</span>
+                {/* <span className="short-day font-bold">{day.shortName}</span> */}
+                <br />
+                <span className="dates">
+                  {day.day}/{day.month}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-col h-full bg-gray-400 w-100 pb-6 rounded-bl-xl rounded-br-xl">
+          {timeslots.map((timeslot) => (
+            <div key={timeslot.id} className="flex flex-row w-full">
+              <div className="side-space basis-12"></div>
+
+              {/* {daysOfWeek.map((_, index) => {
+                const dayName = new Date(2024, parseInt(datesThisWeek[index].date.split('/')[1]) - 1, parseInt(datesThisWeek[index].date.split('/')[0])).toLocaleDateString('en-US', { weekday: 'long' });
+
+                return (
+                  <div
+                    key={index}
+                    className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900`}
+                  >
+                    <button
+                      id={timeslot.time}
+                      className="w-full h-full text-white"
+                      onClick={() => handleTimeSlotClick(datesThisWeek[index].date, timeslot.time)}
+                    >
+                      {timeslot.time}
+                    </button>
+                  </div>
+                );
+              })} */}
+
+              {days.map((day) => {
+                return (
+                  <div
+                    key={day.day}
+                    className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900  ${getBookedColor(
+                      day.day,
+                      day.month,
+                      timeslot.time
+                    )} `}
+                  >
+                    <button
+                      id={timeslot.time}
+                      data-month={day.month}
+                      data-day={day.day}
+                      onClick={(event) => {
+                        if (isBooked(day.day, day.month, timeslot.time))
+                          return toast.error("Already booked!");
+                        handleClick(event);
+                      }}
+                      className="w-full h-full text-white"
+                    >
+                      {timeslot.time}
+                    </button>
+                  </div>
+                );
+              })}
+              <div className="side-space basis-12"></div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default Calendar;
+export default NewCalendar;

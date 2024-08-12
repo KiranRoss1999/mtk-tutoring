@@ -2,8 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const bookingSchema = new Schema({
   userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    type: String,
+    required: true
   },
   bookedDay: {
     type: String,

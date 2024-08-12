@@ -34,9 +34,9 @@ export const ADD_USER = gql`
 
 export const SAVE_BOOKING = gql `
   mutation saveBooking(
-    $userId: [ID]!,
+    $userId: String!,
     $bookedDay: String!,
-    $bookedMonth: String, 
+    $bookedMonth: String!, 
     $timeSlot: String!
   ) {
     saveBooking(
@@ -45,9 +45,25 @@ export const SAVE_BOOKING = gql `
       bookedMonth: $bookedMonth,
       timeSlot: $timeSlot
     ) {
+      _id
+      userId
       bookedDay
       bookedMonth
       timeSlot
     }
   }
 `;
+
+
+export const DELETE_BOOKING = gql `
+  mutation deleteBooking(
+    $bookingId: String!
+  ) {
+    deleteBooking(
+      bookingId: $bookingId
+){
+      _id   
+}
+  }
+`;
+
