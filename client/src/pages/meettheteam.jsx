@@ -6,8 +6,8 @@ const MeetTheTeam = () => {
   return (
     <div>
       <Nav />
-      <section className="bg-green-100 py-20">
-        <div className="mx-auto px-4 text-center max-w-screen-2xl relative isolate">
+      <section className="-[100vw] h-[100vh] bg-green-100 py-20">
+        <div className="mx-auto text-center relative isolate">
           <div className="mx-auto max-w-2xl">
             <p className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
               Meet the team
