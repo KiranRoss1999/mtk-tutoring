@@ -1,8 +1,4 @@
-
 const { User, Booking } = require("../models");
-
-const { User, Tutor, Booking } = require("../models");
-
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -13,17 +9,6 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-
-    users: async () => {
-      return await User.find({}).populate("tutor").populate("bookings");
-    },
-    tutors: async () => {
-      return await Tutor.find({}).populate("user").populate("bookings");
-    },
-    bookings: async () => {
-      return await Booking.find({}).populate("user").populate("tutor");
-    },
-
   },
   Mutation: {
     addUser: async (parent, args) => {
