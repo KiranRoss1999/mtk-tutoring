@@ -34,9 +34,7 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div>
         <Outlet />
-      </div>
     </ApolloProvider>
   );
 }

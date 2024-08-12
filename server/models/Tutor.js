@@ -47,6 +47,12 @@ const tutorSchema = new Schema({
           },
         },
       ],
+      bookings: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Booking",
+        },
+      ],
     },
   ],
 });

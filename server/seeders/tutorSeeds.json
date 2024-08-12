@@ -1,6 +1,6 @@
 [
     {
-        "user": "ObjectId('userId1')",
+        "user": "ObjectId('66b6fb13e6060d2b5e5ca7a5')",
         "pricing": [
             {
                 "oneLesson": 60,
@@ -20,7 +20,64 @@
                         "endTime": "17:00"
                     }
                 ]
-                
+            },
+            {
+                "day": "Thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "11:00",
+                        "endTime": "12:00"
+                    },
+                    {
+                        "startTime": "12:00",
+                        "endTime": "13:00"
+                    },
+                    {
+                        "startTime": "14:00",
+                        "endTime": "15:00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "ObjectId('66b6fb13e6060d2b5e5ca7a6')",
+        "pricing": [
+            {
+                "oneLesson": 130,
+                "tenLessons": 12000
+            }
+        ],
+        "availability": [
+            {
+                "day": "Monday",
+                "timeSlots": [
+                    {
+                        "startTime": "19:00",
+                        "endTime": "20:00"
+                    },
+                    {
+                        "startTime": "20:00",
+                        "endTime": "21:00"
+                    }
+                ]
+            },
+            {
+                "day": "Tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00",
+                        "endTime": "09:00"
+                    },
+                    {
+                        "startTime": "10:00",
+                        "endTime": "11:00"
+                    },
+                    {
+                        "startTime": "11:00",
+                        "endTime": "12:00"
+                    }
+                ]
             }
         ]
     }
