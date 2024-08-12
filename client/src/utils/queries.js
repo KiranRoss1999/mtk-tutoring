@@ -18,7 +18,13 @@ export const QUERY_ME = gql`
       _id
       firstName
       lastName
-      bookings
+      bookings {
+        _id
+        userId
+        bookedDay
+        bookedMonth
+        timeSlot
+      }
     }
   } 
 `;

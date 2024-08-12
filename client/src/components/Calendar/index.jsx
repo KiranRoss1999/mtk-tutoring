@@ -1,8 +1,9 @@
 import createDates from "../../utils/createDates";
 import {useState} from 'react';
 import Prompt from "../../utils/prompt";
-import {useMutation} from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 import {SAVE_BOOKING} from '../../utils/mutations';
+import { QUERY_ME } from "../../utils/queries";
 
 const days = createDates();
 
@@ -60,14 +61,23 @@ const timeslots = [
 const Calendar = () => {
   const [saveBooking, {error}] = useMutation(SAVE_BOOKING);
 
+  const {data} = useQuery(QUERY_ME);
+  let user;
+
+  if(data) {
+    user = data.user
+  }
+
   const handleClick = async (event) => {
     let bookedMonth = event.target.getAttribute('data-month');
     let bookedDay = event.target.getAttribute('data-day');
     let timeSlot = event.target.id;
+    let userId = user._id;
 
     try {
       const { data } = await saveBooking({
         variables: {
+          userId: userId,
           bookedDay: bookedDay,
           bookedMonth: bookedMonth,
           timeSlot: timeSlot

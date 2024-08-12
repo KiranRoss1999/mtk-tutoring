@@ -34,11 +34,13 @@ export const ADD_USER = gql`
 
 export const SAVE_BOOKING = gql `
   mutation saveBooking(
+    $userId: [ID]!,
     $bookedDay: String!,
     $bookedMonth: String, 
     $timeSlot: String!
   ) {
     saveBooking(
+      userId: $userId,
       bookedDay: $bookedDay,
       bookedMonth: $bookedMonth,
       timeSlot: $timeSlot
