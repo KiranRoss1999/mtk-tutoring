@@ -88,9 +88,10 @@ const Calendar = () => {
       console.error(error);
     }
    
-    // console.log(bookedDay);
-    // console.log(bookedMonth);
-    // console.log(timeSlot);
+    // console.log(typeof(bookedDay));
+    // console.log(typeof(bookedMonth));
+    // console.log(typeof(timeSlot));
+    // console.log(userId);
   };
 
   return (

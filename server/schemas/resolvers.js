@@ -39,13 +39,14 @@ const resolvers = {
     saveBooking: async (parent, {bookedDay, bookedMonth, timeSlot}, context) => {
       if(context.user) {
         
-        const booking = new Booking ({
+        const booking = await Booking.create ({
+          userId: context.user._id,
           bookedDay: bookedDay, 
           bookedMonth: bookedMonth, 
           timeSlot: timeSlot
         });
 
-        await User.findByIdAndUpdate(context.user_id, {
+        await User.findByIdAndUpdate(context.user._id, {
             $push: {bookings: booking},
         });
 
