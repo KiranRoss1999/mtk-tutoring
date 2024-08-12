@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Nav from '../components/Nav';
 import { useState } from 'react';
 import {useMutation} from '@apollo/client';
 import {ADD_USER} from '../utils/mutations';
@@ -40,7 +41,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="mx-auto bg-green-100 flex items-center justify-center min-h-screen max-w-screen-2xl p-4 relative isolate">
+    <div>
+      
+    <Nav />
+    <div className="w-[100] h-[100] bg-green-100 flex items-center justify-center min-h-screen p-4 relative isolate">
       <div className="w-full p-8 max-w-lg bg-green-800 rounded-3xl border-0">
         <p className="text-center text-4xl font-bold tracking-tight mb-10 text-white">Sign up</p>
         <p className="text-lg text-center text-white mb-10">Enter your details to sign up</p>
@@ -91,6 +95,7 @@ const Signup = () => {
           <Link to="/login" className="underline font-semibold pl-2">Sign in</Link>
         </p>
       </div>
+    </div>
     </div>
   );
 };
