@@ -14,10 +14,11 @@ export const QUERY_SINGLE_USER = gql`
 
 export const QUERY_ME = gql`
   {
-    me {
+    user {
       _id
       firstName
       lastName
+      email
       bookings {
         _id
         userId
