@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const Booking = require('./Booking');
+
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -23,6 +25,9 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+test-models
+  bookings: [Booking.schema],
+
   isTutor: {
     type: Boolean,
     require: true,
@@ -36,6 +41,7 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Booking",
   },
+
 });
 
 userSchema.pre("save", async function (next) {

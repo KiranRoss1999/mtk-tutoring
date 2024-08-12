@@ -3,7 +3,7 @@ import {useMutation} from '@apollo/client';
 import {LOGIN} from '../utils/mutations';
 import Auth from '../utils/auth';
 
-const Login = () => {
+const Login = (props) => {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
@@ -23,7 +23,7 @@ const Login = () => {
       });
 
       const token = mutationResponse.data.login.token;
-      Auth.login();
+      Auth.login(token);
 
     } catch (error) {
       console.log('There was an error in login.', error);

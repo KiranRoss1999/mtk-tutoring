@@ -1,10 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+
 const HomePage = () => {
   return (
+test-models
+    <div className="min-h-screen flex flex-col">
+      {/* Navigation */}
+      {/* <nav className="w-full bg-gray-800">
+
     <div>
       <nav className="w-full">
+main
         <div className="md:hidden mobile-menu">
           <div className="flex flex-col">
             <button className="h-9 w-24 text-gray-600 bg-white border-2 border-white flex items-center justify-center text-lg font-normal mt-2 mx-auto rounded-lg">
@@ -17,7 +25,7 @@ const HomePage = () => {
             </Link>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       <section className="bg-white text-black relative isolate">
         <span className="absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(100%_100%_at_bottom_center,white,transparent)]">
