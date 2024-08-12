@@ -11,11 +11,9 @@ const Profile = () => {
 
   return (
     <>
-    <div>
       <h1>Hello</h1>
       {user ? (
       <>
-      <div>
       <h2>
         Your first name: {user.firstName}
       </h2>
@@ -25,10 +23,8 @@ const Profile = () => {
       <h2>
         Your email: {user.email}
       </h2>
-    </div>
     </>
     ) : null}
-    </div>
     </>
 
   );
