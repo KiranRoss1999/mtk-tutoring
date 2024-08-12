@@ -9,8 +9,8 @@ const typeDefs = `
   }
 
   type Booking {
-    _id: ID
-    dateBooked: String
+    bookedDay: String
+    bookedMonth: String
     timeSlot: String
   }
 
@@ -26,7 +26,7 @@ const typeDefs = `
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveBooking(dateBooked: String!, timeSlot: String!): Booking
+    saveBooking(bookedDay: String!, bookedMonth: String!, timeSlot: String!): User
   }
 `;
 

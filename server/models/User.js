@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const Booking = require('./Booking');
+const bookingSchema = require('./Booking');
 
 const userSchema = new Schema({
   firstName: {
@@ -25,7 +25,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  bookings: [Booking.schema],
+  bookings: [bookingSchema],
 });
 
 userSchema.pre("save", async function (next) {

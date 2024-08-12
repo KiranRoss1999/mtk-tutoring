@@ -58,22 +58,29 @@ const timeslots = [
 ];
 
 const Calendar = () => {
-  const [saveBooking] = useMutation(SAVE_BOOKING);
+  const [saveBooking, {error}] = useMutation(SAVE_BOOKING);
 
   const handleClick = async (event) => {
-    let bookingMonth = event.target.getAttribute('data-month');
-    let bookingDay = event.target.getAttribute('data-day');
-    // const mutationResponse = await saveBooking({
-    //   variables: {
-    //     dateBooked: event.target.id,
-    //     timeSlot: event.target.parentNode.id
-    //   },
-    // });
-    console.log(bookingDay);
-    console.log(bookingMonth);
-    console.log(event.target.id);
-    // console.log(event.target.parentNode.id);
+    let bookedMonth = event.target.getAttribute('data-month');
+    let bookedDay = event.target.getAttribute('data-day');
+    let timeSlot = event.target.id;
 
+    try {
+      const { data } = await saveBooking({
+        variables: {
+          bookedDay: bookedDay,
+          bookedMonth: bookedMonth,
+          timeSlot: timeSlot
+        },
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+   
+    // console.log(bookedDay);
+    // console.log(bookedMonth);
+    // console.log(timeSlot);
   };
 
   return (

@@ -1,4 +1,4 @@
-const { User, Booking } = require("../models");
+const { User } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -34,11 +34,24 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBooking: async (parent, {dateBooked, timeSlot}, context) => {
+    saveBooking: async (parent, {bookedDay, bookedMonth, timeSlot}, context) => {
       if(context.user) {
-        const booking = new Booking({dateBooked: dateBooked, timeSlot: timeSlot});
+        
+        const booking = {
+          bookedDay: bookedDay, 
+          bookedMonth: bookedMonth, 
+          timeSlot: timeSlot
+        };
 
-        await User.findByIdAndUpdate(context.user_id, {$push: {bookings: booking}});
+        return User.findByIdAndUpdate(context.user_id, 
+          {
+            $addToSet: {bookings: booking},
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
       }
 
       throw AuthenticationError;

@@ -1,7 +1,11 @@
-const { Schema, model} = require("mongoose");
+const { Schema} = require("mongoose");
 
 const bookingSchema = new Schema({
-  dateBooked: {
+  bookedDay: {
+    type: String,
+    required: true
+  },
+  bookedMonth: {
     type: String,
     required: true
   },
@@ -11,6 +15,4 @@ const bookingSchema = new Schema({
   },
 });
 
-const Booking = model("Booking", bookingSchema);
-
-module.exports = Booking;
+module.exports = bookingSchema;
