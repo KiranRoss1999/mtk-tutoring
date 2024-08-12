@@ -20,7 +20,7 @@ const HomePage = () => {
             </Link>
           </div>
         </div>
-      </nav> */}
+      </nav>
 
       <section className="bg-white text-black relative isolate">
         <span className="absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(100%_100%_at_bottom_center,white,transparent)]">
