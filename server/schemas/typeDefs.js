@@ -5,14 +5,32 @@ const typeDefs = `
     lastName: String
     email: String
     password: String
+
     isTutor: Boolean
+    tutor: Tutor
+
+    bookings: [Booking]
   }
 
-  type Tutor {
+  type Booking {
+    _id: ID
+
+    userId: ID
+    bookedDay: String
+    bookedMonth: String
+
+    user: User
+    pricing: [Pricing]
+    availability: [Availability]
+    bookings: [Booking]
+  }
+
+  type Booking {
     _id: ID
     user: User
-    prices: [Pricing]
-    availabilities: [Availability]
+    tutor: Tutor
+    timeslot: TimeSlot
+    dateBooked: String
   }
 
   type Pricing {
@@ -22,12 +40,13 @@ const typeDefs = `
 
   type Availability {
     day: String
-    timeslots: [Timeslot]
+    timeslots: [TimeSlot]
   }
 
-  type Timeslot {
+  type TimeSlot {
     startTime: String
     endTime: String
+
   }
 
   type Auth {
@@ -37,14 +56,19 @@ const typeDefs = `
 
   type Query {
     me: User
+
+    user(id: ID!): User
     tutor(id: ID!): Tutor
     tutors: [Tutor]
     users: [User]
+    bookings: [Booking]
+
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    saveBooking(userId: ID!, bookedDay: String!, bookedMonth: String!, timeSlot: String!): Booking
   }
 `;
 

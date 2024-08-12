@@ -1,7 +1,44 @@
-import React from 'react';
 import Nav from '../components/Nav';
+import React, { useState } from 'react';
+import {useMutation} from '@apollo/client';
+import {LOGIN} from '../utils/mutations';
+import Auth from '../utils/auth';
 
-const Login = () => {
+const Login = (props) => {
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [login, {error}] = useMutation(LOGIN);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const mutationResponse = await login({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        },
+      });
+
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+
+    } catch (error) {
+      console.log('There was an error in login.', error);
+    }
+  };
+
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <div>
   <Nav />
@@ -9,17 +46,23 @@ const Login = () => {
       <div className="w-full p-8 max-w-lg bg-green-800 rounded-3xl">
         <p className="text-center text-4xl font-bold tracking-tight mb-10 text-white">Sign in</p>
         <p className="text-lg text-center text-white mb-10">Enter your details to login</p>
-        <form className="mt-10">
+        <form  onSubmit={handleFormSubmit} className="mt-10">
           <div className="space-y-5">
             <input
-              type="text"
+              type="email"
+              name='email'
+              id='email'
               placeholder="Enter email"
               className="border border-gray-200 p-3 focus:ring-1 focus:ring-gray-600 focus:outline-none w-full rounded-lg bg-white"
+              onChange={handleChange}
             />
             <input
               type="password"
+              name='password'
+              id='pwd'
               placeholder="Enter password"
               className="border border-gray-200 p-3 focus:ring-1 focus:ring-gray-600 focus:outline-none w-full rounded-lg bg-white"
+              onChange={handleChange}
             />
           </div>
           <button

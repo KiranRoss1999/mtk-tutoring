@@ -1,11 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const tutorSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
   pricing: [
     {
       oneLesson: {
@@ -45,6 +40,12 @@ const tutorSchema = new Schema({
             required: true,
             match: [/^([01]\d|2[0-3]):([0-5]\d)$/, "Must match HH:MM format"],
           },
+        },
+      ],
+      bookings: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Booking",
         },
       ],
     },
