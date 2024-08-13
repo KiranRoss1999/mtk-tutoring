@@ -1,6 +1,5 @@
 import createDates from "../../utils/createDates";
 import React, { useEffect, useState } from "react";
-import Prompt from "../../utils/prompt";
 import "./calendar.css";
 
 import { useMutation, useQuery } from "@apollo/client";
