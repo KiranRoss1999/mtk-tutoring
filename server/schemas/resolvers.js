@@ -63,7 +63,7 @@ const resolvers = {
       if (context.user) {
         const booking = await Booking.create({
           userId: context.user._id,
-          tutorId: tutorId,
+          // tutorId: tutorId,
           bookedDay: bookedDay,
           bookedMonth: bookedMonth,
           timeSlot: timeSlot,
