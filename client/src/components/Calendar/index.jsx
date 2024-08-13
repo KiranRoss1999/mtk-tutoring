@@ -1,12 +1,12 @@
 import createDates from "../../utils/createDates";
 import React, { useEffect, useState } from "react";
-import Prompt from "../../utils/prompt";
 import "./calendar.css";
 
 import { useMutation, useQuery } from "@apollo/client";
 import { SAVE_BOOKING } from "../../utils/mutations";
-import { QUERY_ME, QUERY_BOOKINGS } from "../../utils/queries";
+import { QUERY_BOOKINGS } from "../../utils/queries";
 import { toast } from "react-toastify";
+import Auth from '../../utils/auth';
 
 const days = createDates();
 
@@ -70,13 +70,8 @@ const NewCalendar = () => {
     refetch: refetchBookings,
     loading: loadingBookings,
   } = useQuery(QUERY_BOOKINGS);
-  const { data } = useQuery(QUERY_ME);
-  let user;
 
-  if (data) {
-    user = data.user;
-  }
-
+  const userId = Auth.getProfile().data._id;
 
   useEffect(() => {
     function onfocus() {
@@ -119,7 +114,7 @@ const NewCalendar = () => {
     let bookedMonth = event.target.getAttribute("data-month");
     let bookedDay = event.target.getAttribute("data-day");
     let timeSlot = event.target.id;
-    let userId = user._id;
+    // let userId = user._id;
 
     try {
       const { data } = await saveBooking({
@@ -143,17 +138,6 @@ const NewCalendar = () => {
     // console.log(typeof(bookedMonth));
     // console.log(typeof(timeSlot));
     // console.log(userId);
-  };
-
-  const handleTimeSlotClick = (dateString, time) => {
-    // const [day, month] = dateString.split('/').map(Number); // Convert to numbers
-    // const isConfirmed = Prompt(day, month, time);
-    // if (isConfirmed) {
-    //   console.log(`Booking confirmed for ${day}/${month} at ${time}`);
-    // } else {
-    //   console.log(`Booking canceled or failed for ${day}/${month} at ${time}`);
-    // }
-    console.log(days);
   };
 
   return (
