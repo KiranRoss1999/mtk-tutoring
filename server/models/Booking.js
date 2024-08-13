@@ -5,6 +5,10 @@ const bookingSchema = new Schema({
     type: String,
     required: true
   },
+  tutorId: {
+    type: String,
+    required: true
+  },
   bookedDay: {
     type: String,
     required: true

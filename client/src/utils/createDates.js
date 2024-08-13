@@ -15,11 +15,13 @@ const createDates = () => {
     let dateMonth = newDate.getMonth() + 1;
     let dateDate = newDate.getDate();
     let dateDay = newDate.toLocaleString('en-us', {weekday: 'long'});
+    let dateShort = dateDay.substring(0, 3);
 
     let dateObj = {
       month: dateMonth,
       day: dateDate,
       weekday: dateDay,
+      dayShort: dateShort,
     };
 
     days.push(dateObj);

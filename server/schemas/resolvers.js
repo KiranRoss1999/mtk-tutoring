@@ -1,4 +1,4 @@
-const { User, Booking } = require("../models");
+const { User, Booking, Tutor } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -10,6 +10,11 @@ const resolvers = {
         return user;
       }
       throw AuthenticationError;
+    },
+    tutor: async (parent, {tutorId}) => {
+      const tutor = await Tutor.findOne({_id: tutorId});
+
+      return tutor;
     },
     bookings: async (parent, args, contex) => {
       if (contex.user) {
@@ -47,12 +52,13 @@ const resolvers = {
     },
     saveBooking: async (
       parent,
-      { bookedDay, bookedMonth, timeSlot },
+      { bookedDay, bookedMonth, timeSlot, tutorId },
       context
     ) => {
       if (context.user) {
         const booking = await Booking.create({
           userId: context.user._id,
+          tutorId: tutorId,
           bookedDay: bookedDay,
           bookedMonth: bookedMonth,
           timeSlot: timeSlot,
