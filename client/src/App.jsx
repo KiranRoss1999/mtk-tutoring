@@ -6,6 +6,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
@@ -35,6 +38,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
         <Outlet />
+        <ToastContainer />
+      </div>
     </ApolloProvider>
   );
 }

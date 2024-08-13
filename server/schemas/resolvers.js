@@ -1,22 +1,24 @@
-const { User, Tutor, Booking } = require("../models");
+const { User, Booking } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        const user = await User.findById(context.user._id).populate("bookings");
+
+        return user;
       }
       throw AuthenticationError;
     },
-    users: async () => {
-      return await User.find({}).populate("tutor").populate("bookings");
-    },
-    tutors: async () => {
-      return await Tutor.find({}).populate("user").populate("bookings");
-    },
-    bookings: async () => {
-      return await Booking.find({}).populate("user").populate("tutor");
+    bookings: async (parent, args, contex) => {
+      if (contex.user) {
+        const bookings = await Booking.find({});
+
+        return bookings;
+      }
+
+      throw AuthenticationError;
     },
   },
   Mutation: {
@@ -42,6 +44,45 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveBooking: async (
+      parent,
+      { bookedDay, bookedMonth, timeSlot },
+      context
+    ) => {
+      if (context.user) {
+        const booking = await Booking.create({
+          userId: context.user._id,
+          bookedDay: bookedDay,
+          bookedMonth: bookedMonth,
+          timeSlot: timeSlot,
+        });
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { bookings: booking },
+        });
+
+        return booking;
+      }
+
+      throw AuthenticationError;
+    },
+    deleteBooking: async (parent, { bookingId }, context) => {
+      if (context.user) {
+        const deletedBooking = await Booking.findByIdAndDelete(bookingId);
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $pull: {
+            bookings: {
+              _id: bookingId,
+            },
+          },
+        });
+
+        return deletedBooking;
+      }
+
+      throw AuthenticationError;
     },
   },
 };

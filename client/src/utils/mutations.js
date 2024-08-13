@@ -31,3 +31,39 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const SAVE_BOOKING = gql `
+  mutation saveBooking(
+    $userId: String!,
+    $bookedDay: String!,
+    $bookedMonth: String!, 
+    $timeSlot: String!
+  ) {
+    saveBooking(
+      userId: $userId,
+      bookedDay: $bookedDay,
+      bookedMonth: $bookedMonth,
+      timeSlot: $timeSlot
+    ) {
+      _id
+      userId
+      bookedDay
+      bookedMonth
+      timeSlot
+    }
+  }
+`;
+
+
+export const DELETE_BOOKING = gql `
+  mutation deleteBooking(
+    $bookingId: String!
+  ) {
+    deleteBooking(
+      bookingId: $bookingId
+){
+      _id   
+}
+  }
+`;
+
