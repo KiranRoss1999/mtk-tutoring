@@ -41,3 +41,23 @@ export const QUERY_BOOKINGS = gql`
       }
   } 
 `;
+
+export const QUERY_SINGLE_TUTOR = gql`
+  query getSingleTutor($tutorId: ID!) {
+    tutor(tutorId: $tutorId) {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;
+
+export const QUERY_ALL_TUTORS = gql`
+  query allTutors {
+    tutors {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;

@@ -8,6 +8,15 @@ const typeDefs = `
     bookings: [Booking]
   }
 
+  type Tutor {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    bookings: [Booking]
+  }
+
   type Booking {
     _id: ID
     userId: ID
@@ -23,6 +32,8 @@ const typeDefs = `
 
   type Query {
     user: User
+    tutors: [Tutor]!
+    tutor(tutorId: ID!): Tutor
     bookings: [Booking]
   }
 
