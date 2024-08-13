@@ -19,7 +19,7 @@ const Profile = () => {
       refetchUser();
     }
 
-    onfocus()
+    onfocus();
 
     window.addEventListener("focus", onfocus);
 
@@ -35,11 +35,11 @@ const Profile = () => {
           },
         });
 
-        toast.info("Booked deleted successfully!");
+        toast.info("Booking deleted successfully!",{position: "top-center"});
 
         refetchUser();
       } catch (error) {
-        toast.error("Something went wrong, while deleting booking");
+        toast.error("Something went wrong while deleting booking",{position: "top-center"});
         console.error(error);
       }
     }
@@ -48,29 +48,49 @@ const Profile = () => {
   return (
     <>
       <Nav />
-      <h1>Hello</h1>
-      {user ? (
-        <>
-          <h2>Your first name: {user.firstName}</h2>
-          <h2>Your last name: {user.lastName}</h2>
-          <h2>Your email: {user.email}</h2>
-
-          {/*  <UserBookingsCalendar /> */}
-
-          {user?.bookings.map((booking, index) => (
-            <div key={booking._id} className="bg-green-500 border flex ">
-              <h1 className="text-2xl text-white">
-                ({index + 1}.) {booking.bookedDay} | {booking.bookedMonth} |{" "}
-                {booking.timeSlot}
-              </h1>
-
-              <button onClick={() => handleDeleteBooking(booking?._id)}>
-                Delete
-              </button>
+      <div className="container mx-auto p-8">
+        <h1 className="text-5xl font-bold text-center mb-8">Your Profile</h1>
+        {user ? (
+          <div className="bg-white p-6 rounded-lg shadow-md border-4 border-green-800">
+            <h2 className="text-3xl font-semibold mb-4">Personal Information</h2>
+            <div className="mb-6">
+              <p className="text-lg font-medium">First Name: {user.firstName}</p>
+              <p className="text-lg font-medium">Last Name: {user.lastName}</p>
+              <p className="text-lg font-medium">Email: {user.email}</p>
             </div>
-          ))}
-        </>
-      ) : null}
+
+            <h2 className="text-2xl font-semibold mb-4">Your Bookings</h2>
+            {user.bookings.length > 0 ? (
+              user.bookings.map((booking, index) => (
+                <div
+                  key={booking._id}
+                  className="bg-green-100 p-4 rounded-lg shadow-sm mb-4 border border-green-800 flex justify-between items-center"
+                >
+                  <div>
+                    <p className="text-lg font-semibold text-green-800">
+                      Booking {index + 1}:
+                    </p>
+                    <p className="text-lg">
+                      Date: {booking.bookedDay}/{booking.bookedMonth}
+                    </p>
+                    <p className="text-lg">Time: {booking.timeSlot}</p>
+                  </div>
+                  <button
+                    onClick={() => handleDeleteBooking(booking._id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p className="text-lg text-gray-500">No bookings found.</p>
+            )}
+          </div>
+        ) : (
+          <p className="text-lg text-center text-gray-500">Loading profile...</p>
+        )}
+      </div>
     </>
   );
 };

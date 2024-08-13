@@ -1,64 +1,64 @@
 import createDates from "../../utils/createDates";
 import React, { useEffect, useState } from "react";
+import Prompt from "../../utils/prompt";
 import "./calendar.css";
 
 import { useMutation, useQuery } from "@apollo/client";
 import { SAVE_BOOKING } from "../../utils/mutations";
-import { QUERY_BOOKINGS } from "../../utils/queries";
+import { QUERY_ME, QUERY_BOOKINGS } from "../../utils/queries";
 import { toast } from "react-toastify";
-import Auth from '../../utils/auth';
 
 const days = createDates();
 
 const timeslots = [
   {
     id: 1,
-    time: "8:00",
+    time: "8:00 AM",
     shortTime: "8am",
   },
   {
     id: 2,
-    time: "9:00",
+    time: "9:00 AM",
   },
   {
     id: 3,
-    time: "10:00",
+    time: "10:00 AM",
   },
   {
     id: 4,
-    time: "11:00",
+    time: "11:00 AM",
   },
   {
     id: 5,
-    time: "12:00",
+    time: "12:00 PM",
   },
   {
     id: 6,
-    time: "1:00",
+    time: "1:00 PM",
   },
   {
     id: 7,
-    time: "2:00",
+    time: "2:00 PM",
   },
   {
     id: 8,
-    time: "3:00",
+    time: "3:00 PM",
   },
   {
     id: 9,
-    time: "4:00",
+    time: "4:00 PM",
   },
   {
     id: 10,
-    time: "5:00",
+    time: "5:00 PM",
   },
   {
     id: 11,
-    time: "6:00",
+    time: "6:00 PM",
   },
   {
     id: 12,
-    time: "7:00",
+    time: "7:00 PM",
   },
 ];
 
@@ -70,8 +70,13 @@ const NewCalendar = () => {
     refetch: refetchBookings,
     loading: loadingBookings,
   } = useQuery(QUERY_BOOKINGS);
+  const { data } = useQuery(QUERY_ME);
+  let user;
 
-  const userId = Auth.getProfile().data._id;
+  if (data) {
+    user = data.user;
+  }
+
 
   useEffect(() => {
     function onfocus() {
@@ -114,7 +119,7 @@ const NewCalendar = () => {
     let bookedMonth = event.target.getAttribute("data-month");
     let bookedDay = event.target.getAttribute("data-day");
     let timeSlot = event.target.id;
-    // let userId = user._id;
+    let userId = user._id;
 
     try {
       const { data } = await saveBooking({
@@ -126,11 +131,11 @@ const NewCalendar = () => {
         },
       });
 
-      toast.success("Booked successfully!");
+      toast.success("Booked successfully!",{position: "top-center"});
 
       refetchBookings();
     } catch (error) {
-      toast.error("Something went wrong, while creating booking");
+      toast.error("Something went wrong, while creating booking",{position: "top-center"});
       console.error(error);
     }
 
@@ -140,14 +145,26 @@ const NewCalendar = () => {
     // console.log(userId);
   };
 
+  const handleTimeSlotClick = (dateString, time) => {
+    // const [day, month] = dateString.split('/').map(Number); // Convert to numbers
+    // const isConfirmed = Prompt(day, month, time);
+    // if (isConfirmed) {
+    //   console.log(`Booking confirmed for ${day}/${month} at ${time}`);
+    // } else {
+    //   console.log(`Booking canceled or failed for ${day}/${month} at ${time}`);
+    // }
+    console.log(days);
+  };
+
   return (
     <div className="shadow-md w-screen h-screen">
-      <section className="calendar-box flex flex-col justify-start align-start bg-gray-300 w-100 m-24 rounded-xl h-auto">
+      <h1 className="text-5xl font-bold text-center pt-8">Schedule a booking</h1>
+      <section className="calendar-box flex flex-col justify-start align-start bg-gray-200 border border-green-800 border-2 w-90 m-8 rounded-xl h-auto">
         <div className="info-head flex flex-row items-center h-28 rounded-xl text-black ml-5 w-100">
-          <span className="header-text basis-full font-bold">
+          <span className="header-text font-bold text-center">
             Available times for your Tutor:
           </span>
-          <span className="tutor-name basis-full ml-3 flex-1 font-bold">
+          <span className="tutor-name basis-full ml-3 font-bold text-center">
             Tutor Name
           </span>
         </div>
@@ -163,17 +180,17 @@ const NewCalendar = () => {
           {days.map((day) => {
             return (
               <div className="flex-1 grow text-center" key={day.day}>
-                <span className="font-bold">{day.weekday}</span>
+                <span className="font-bold text-white">{day.weekday}</span>
                 {/* <span className="short-day font-bold">{day.shortName}</span> */}
                 <br />
-                <span className="dates">
+                <span className="dates text-white">
                   {day.day}/{day.month}
                 </span>
               </div>
             );
           })}
         </div>
-        <div className="flex flex-col h-full bg-gray-400 w-100 pb-6 rounded-bl-xl rounded-br-xl">
+        <div className="flex flex-col h-full bg-gray-200 w-100 pb-6 rounded-bl-xl rounded-br-xl">
           {timeslots.map((timeslot) => (
             <div key={timeslot.id} className="flex flex-row w-full">
               <div className="side-space basis-12"></div>
@@ -213,7 +230,7 @@ const NewCalendar = () => {
                       data-day={day.day}
                       onClick={(event) => {
                         if (isBooked(day.day, day.month, timeslot.time))
-                          return toast.error("Already booked!");
+                          return toast.error("Already booked!",{position: "top-center"});
                         handleClick(event);
                       }}
                       className="w-full h-full text-white"
