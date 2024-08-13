@@ -12,6 +12,9 @@ import MeetTheTeam from './pages/meettheteam.jsx';
 import Bookings from './pages/Bookings.jsx';
 import Profile from './pages/Profile.jsx';
 import Calendar from './pages/Calendar.jsx';
+import MeetTheTeam from './pages/meettheteam.jsx';
+import Bookings from './pages/Bookings.jsx';
+import Availability from './pages/Availability.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,18 @@ const router = createBrowserRouter([
       {
         path: 'signup',
         element: <Signup />
+      },
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'bookings',
+        element: <Bookings />
+      },
+      {
+        path: 'availability',
+        element: <Availability />
       },
       {
         path: 'login',
