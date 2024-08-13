@@ -32,7 +32,8 @@ const typeDefs = `
 
   type Query {
     user: User
-    tutor: Tutor
+    tutors: [Tutor]!
+    tutor(tutorId: ID!): Tutor
     bookings: [Booking]
   }
 

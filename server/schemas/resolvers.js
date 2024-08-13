@@ -16,8 +16,13 @@ const resolvers = {
 
       return tutor;
     },
-    bookings: async (parent, args, contex) => {
-      if (contex.user) {
+    tutors: async () => {
+      const tutors = await Tutor.find();
+
+      return tutors;
+    },
+    bookings: async (parent, args, context) => {
+      if (context.user) {
         const bookings = await Booking.find({});
 
         return bookings;

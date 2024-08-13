@@ -51,3 +51,13 @@ export const QUERY_SINGLE_TUTOR = gql`
     }
   }
 `;
+
+export const QUERY_ALL_TUTORS = gql`
+  query allTutors {
+    tutors {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;
