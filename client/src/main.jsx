@@ -13,6 +13,8 @@ import Bookings from './pages/Bookings.jsx';
 import Profile from './pages/Profile.jsx';
 import Calendar from './pages/Calendar.jsx';
 import Availability from './pages/Availability.jsx';
+import Bokings from './pages/Bokings.jsx';
+import TutorPage from './pages/TutorPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
         path: 'calendar',
         element: <Calendar />
       },
+      {
+        path: 'bokings',
+        element: <Bokings />
+      },
+      {
+        path: ':tutorId/tutorPage',
+        element: <TutorPage />
+      }
     ]
   }
 ]);
