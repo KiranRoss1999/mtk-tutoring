@@ -50,7 +50,8 @@ const Profile = () => {
     return (
       <>
         {Auth.loggedIn() ? (
-    <div className="container mx-auto p-8">
+          
+    <div className="container mx-auto p-8"> 
     <h1 className="h1 text-5xl font-bold text-center mb-8">Your Profile</h1>
     {user ? (
       <div className="bg-white p-6 rounded-lg shadow-md border-4 border-green-800">

@@ -3,6 +3,7 @@ import mtkLogo from "../../../public/assets/images/mtk.png";
 
 export default function Footer() {
     return (
+        <div className="w-[100vw] h-[25vh] bg-green-100 relative overflow-hidden mx-auto ">
     <div className="footer-thang flex flex-row items-center mx-20 mt-16">
             <p className="text-xs text-center flex-1">
                 MTK Tutoring whose registered office is at West End, Brisbane, AUSTRALIA (“MTK", “we”, “our” or “us”), 
@@ -18,6 +19,7 @@ export default function Footer() {
             MTK Tutoring will not be able to provide you with the services offered on our Platforms if the required information 
             is not provided, consequently you will not be able to register for a user account on our Platforms.
         </p>
+    </div>
     </div>
     );
 }

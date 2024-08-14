@@ -109,7 +109,7 @@ const NewCalendar = () => {
       const foundBooking = isBooked(day, month, timeSlot);
       if (foundBooking) return "bg-red-900 text-red-900 hover:red-900";
       // line 112 was for testing because calendar wasn't blocking out with red colour
-      else if (!foundBooking) return "bg-black text-white";
+      else if (!foundBooking) return "bg-zinc-700 text-white";
       return ``;
     },
     [bookingsData, isBooked]
@@ -147,6 +147,7 @@ const NewCalendar = () => {
     <>
       {Auth.loggedIn() ? (
         <>
+        <div className="w-[100vw] h-[75vh] bg-green-100 relative overflow-hidden mx-auto ">
           <h1 className="text-5xl font-bold text-center pt-8">Schedule a Booking</h1>
            <section className="flex flex-col justify-start align-start bg-gray-200 border border-green-800 border-2 w-90 m-8 rounded-xl h-auto">
            <div className="info-head flex flex-row items-center h-28 rounded-xl text-black ml-5 w-100">
@@ -183,7 +184,7 @@ const NewCalendar = () => {
                    return (
                      <div
                        key={day.day}
-                       className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900 ${getBookedColor(
+                       className={`grid-cell flex-1 grow text-center rounded-xl h-10 m-1 hover:bg-zinc-400 ${getBookedColor(
                          day.day,
                          day.month,
                          timeslot.time
@@ -210,6 +211,7 @@ const NewCalendar = () => {
              ))}
            </div>
          </section>
+         </div>
          </>
       ) : (
           <h1 className="text-center h-12 mt-24 text-3xl">Oopsie! Please login to access your booking calendar. Please {' '}

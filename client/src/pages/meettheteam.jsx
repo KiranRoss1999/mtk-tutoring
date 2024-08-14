@@ -6,6 +6,7 @@ import Team from "../components/Team"
 const MeetTheTeam = () => {
   return (
     <div>
+      
       <Nav />
       <Team />
     </div>
