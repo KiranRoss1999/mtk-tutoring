@@ -6,13 +6,14 @@ import './index.css';
 
 import App from './App.jsx';
 import Home from './pages/HomePage.jsx';
+import Error from './pages/Error.jsx'
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import MeetTheTeam from './pages/meettheteam.jsx';
 import Bookings from './pages/Bookings.jsx';
 import Profile from './pages/Profile.jsx';
-import Calendar from './pages/Calendar.jsx';
 import Availability from './pages/Availability.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -37,10 +38,6 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: 'login',
-        element: <Login />
-      },
-      {
         path: 'bookings',
         element: <Bookings />
       },
@@ -49,20 +46,8 @@ const router = createBrowserRouter([
         element: <Availability />
       },
       {
-        path: 'login',
-        element: <Login />
-      },
-      {
-        path: 'bookings',
-        element: <Bookings />
-      },
-      {
         path: 'profile',
         element: <Profile />
-      },
-      {
-        path: 'calendar',
-        element: <Calendar />
       },
     ]
   }
