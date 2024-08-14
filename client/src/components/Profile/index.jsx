@@ -5,7 +5,7 @@ import { QUERY_ME } from "../../utils/queries";
 import React, { useEffect } from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import "./index.css";
+import "./profile.css";
 
 const Profile = () => {
     const { data, refetch: refetchUser } = useQuery(QUERY_ME);

@@ -1,6 +1,6 @@
 import createDates from "../../utils/createDates";
 import React, { useEffect, useState } from "react";
-import "./index.css";
+import "./calendar.css";
 import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { SAVE_BOOKING } from "../../utils/mutations";
@@ -107,7 +107,7 @@ const NewCalendar = () => {
   const getBookedColor = React.useCallback(
     (day, month, timeSlot) => {
       const foundBooking = isBooked(day, month, timeSlot);
-      if (foundBooking) return "bg-red-900 text-red-900 hover:bg-red-900";
+      if (foundBooking) return "bg-red-900 text-red-900 hover:red-900";
       // line 112 was for testing because calendar wasn't blocking out with red colour
       else if (!foundBooking) return "bg-black text-white";
       return ``;

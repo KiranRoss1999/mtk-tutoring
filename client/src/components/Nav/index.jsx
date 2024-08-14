@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Auth from "../../utils/auth";
 import { FaUserPlus, FaSignInAlt, FaSignOutAlt, FaHome, FaUsers, FaUser, FaCalendarAlt } from 'react-icons/fa';
-import "./index.css"
+import "./nav.css"
+import Logo from "../../../public/assets/images/mtk-icon.png";
 
 export default function Nav() {
 
@@ -43,7 +44,7 @@ export default function Nav() {
     <nav className="flex items-center justify-between h-24 p-8 bg-green-800 mx-auto">
       <a className="company text-2xl font-extrabold text-white">MTK Tutoring</a>
       <div>
-        <img src='../../public/mtk-icon.png' className='comp-icon'></img>
+        <img src={Logo} className='comp-icon'></img>
         <a className="comp-short font-extrabold text-white">MTK </a>
       </div>
     <div className='nav-small flex flex-row justify-evenly items-center'>

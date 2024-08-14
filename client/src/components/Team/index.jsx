@@ -1,9 +1,12 @@
-import "./index.css";
+import "./team.css";
+import Tim from "../../../public/assets/images/Tim.png";
+import Mitra from "../../../public/assets/images/Mitra.jpeg";
+import Kiran from "../../../public/assets/images/Kiran.jpg";
 
 export default function Team() {
     return(
         <>
-        <section className="w-100vw h-auto pt-7">
+        <section className="team-section w-100vw h-auto pt-7 pb-96">
         <div className="mx-auto text-center relative isolate">
           <div className="mx-auto max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
@@ -21,34 +24,22 @@ export default function Team() {
           >
             <li>
               <img
-                src="../../public/tim.png"
+                src={Tim}
                 alt="Name"
                 className="max-h-[400px] object-cover object-top mx-auto w-full rounded-lg"
               />
               <div className="py-6">
                 <p className="text-2xl font-semibold leading-7 tracking-tight text-black">
-                  Tim Wong
+                  Timothy Wong
                 </p>
                 <p className="text-lg leading-6 text-black pt-1.5">
                   Full-Stack Developer
                 </p>
-                <ul role="list" className="mt-4 flex gap-x-4 justify-center">
-                  <li>
-                    <a href="#" className="text-black hover:text-gray-700">
-                      <span className="sr-only">X</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-black hover:text-gray-700">
-                      <span className="sr-only">LinkedIn</span>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </li>
             <li>
               <img
-                src="../../public/mitra.jpeg"
+                src={Mitra}
                 alt="Name"
                 className="max-h-[400px] object-cover object-top mx-auto w-full rounded-lg"
               />
@@ -59,23 +50,11 @@ export default function Team() {
                 <p className="text-lg leading-6 text-black pt-1.5">
                   Full-Stack Developer
                 </p>
-                <ul role="list" className="mt-4 flex gap-x-4 justify-center">
-                  <li>
-                    <a href="#" className="text-black hover:text-gray-700">
-                      <span className="sr-only">X</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-black hover:text-gray-700">
-                      <span className="sr-only">LinkedIn</span>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </li>
             <li>
               <img
-                src="../../public/kiran.jpg"
+                src={Kiran}
                 alt="Name"
                 className="max-h-[400px] object-cover object-top mx-auto w-full rounded-lg"
               />
@@ -86,18 +65,6 @@ export default function Team() {
                 <p className="text-lg leading-6 text-black pt-1.5">
                   Full-Stack Developer
                 </p>
-                <ul role="list" className="mt-4 flex gap-x-4 justify-center">
-                  <li>
-                    <a href="#" className="text-black hover:text-gray-700">
-                      <span className="sr-only">X</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-black hover:text-gray-700">
-                      <span className="sr-only">LinkedIn</span>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </li>
           </ul>

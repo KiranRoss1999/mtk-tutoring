@@ -38,9 +38,9 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className="w-100vw h-auto bg-white overflow-hidden">
+      <div className="w-full h-screen">
         <Outlet />
-        <div className='w-90 flex justify-center h-auto'>
+        <div className='w-90 flex justify-center'>
           <Footer />
         </div>
         <ToastContainer />

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import "./availability.css";
 
 const timeslots = [
   {
