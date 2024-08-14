@@ -1,32 +1,37 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Auth from "../../utils/auth";
+import { FaUserPlus, FaSignInAlt, FaSignOutAlt, FaHome, FaUsers, FaUser, FaCalendarAlt } from 'react-icons/fa';
+import "./index.css"
 
-function Nav() {
+export default function Nav() {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
+        <ul>
+          <li className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">
             <a href="/" onClick={() => Auth.logout()}>
-              Logout
+            <FaSignOutAlt className="icon" />
+              <span className='nav-full'>Logout</span>
             </a>
           </li>
         </ul>
       );
     } else {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/signup">
-              Signup
-            </Link>
+        <ul className='flex'>
+          <li className="text-xl text-green-400 transition duration-150 ease hover:text-green-200 mx-4">
+          <Link to="/signup">
+            <FaUserPlus className="icon" />
+            <span className="nav-full">Signup</span>
+          </Link>
           </li>
-          <li className="mx-1">
-            <Link to="/login">
-              Login
-            </Link>
+          <li className="text-xl text-green-400 transition duration-150 ease hover:text-green-200 mx-4">
+          <Link to="/login">
+            <FaSignInAlt className="icon" />
+            <span className="nav-full">Login</span>
+          </Link>
           </li>
         </ul>
       );
@@ -35,34 +40,38 @@ function Nav() {
 
 
   return (
-    <div className="flex items-center justify-between h-24 p-8 bg-green-800 mx-auto">
-    <a href="#_" className="text-2xl font-extrabold text-white">MTK Tutoring</a>
-    <nav className="hidden space-x-8 md:flex items-center justify-center font-light text-green-200">
+    <nav className="flex items-center justify-between h-24 p-8 bg-green-800 mx-auto">
+      <a className="company text-2xl font-extrabold text-white">MTK Tutoring</a>
+      <div>
+        <img src='../../public/mtk-icon.png' className='comp-icon'></img>
+        <a className="comp-short font-extrabold text-white">MTK </a>
+      </div>
+    <div className='nav-small flex flex-row justify-evenly items-center'>
     <Link to="/"  >
-      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Home</span>
-      </Link>
-      <Link to="/pricing"  >
-      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Pricing</span>
-      </Link>
-      <Link to="/meettheteam"  >
-      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Meet The Team</span>
-      </Link>
+      <FaHome className='icon' />
+      <span className="nav-full text-xl text-green-400 transition duration-150 ease hover:text-green-200 mx-4">Home</span>
+    </Link>
+    <Link to="/meettheteam"  >
+      <FaUsers className='icon' />
+      <span className="nav-full text-xl text-green-400 transition duration-150 ease hover:text-green-200 mx-4">Meet The Team</span>
+    </Link>
 
       {Auth.loggedIn() &&
-      <Link to="/profile"  >
-      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">My profile</span>
-      </Link>
+    <Link to="/profile"  >
+      <FaUser className='icon'/>
+      <span className="nav-full text-xl text-green-400 transition duration-150 ease hover:text-green-200 mx-4">My Profile</span>
+    </Link>
 }
       {Auth.loggedIn() &&
-      <Link to="/calendar"  >
-      <span className="text-xl text-green-400 transition duration-150 ease hover:text-green-200">Schedule a booking</span>
-      </Link>     
+    <Link to="/bookings"  >
+      <FaCalendarAlt className="icon" />
+      <span className="nav-full text-xl text-green-400 transition duration-150 ease hover:text-green-200 mx-4">Schedule a Booking</span>
+    </Link>     
 }
       {showNavigation()}
-    </nav>
-  </div>
+    </div>
+  </nav>
   )
 }
 
 
-export default Nav
