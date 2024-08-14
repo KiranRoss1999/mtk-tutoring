@@ -5,8 +5,11 @@ import { useState } from 'react';
 import {useMutation} from '@apollo/client';
 import {ADD_USER} from '../utils/mutations';
 import Auth from '../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    
+  const navigate = useNavigate()
   const [formState, setFormState] = useState({
     firstName: '',
     lastName: '',
@@ -19,18 +22,26 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const mutationResponse = await addUser({
-      variables: {
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-        email: formState.email,
-        password: formState.password,
-      },
-    });
-
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+      try {
+        const mutationResponse = await addUser({
+          variables: {
+            firstName: formState.firstName,
+            lastName: formState.lastName,
+            email: formState.email,
+            password: formState.password,
+          },
+        });
+    
+        const token = mutationResponse.data.addUser.token;
+        Auth.login(token);
+    
+        navigate('/profile')
+      } catch (err) {
+        console.error(err);
+        alert("Oopsie! There was an error signing up!")
+      }
   };
+   
 
   const handleChange = (event) => {
     const {name, value }= event.target;
@@ -44,7 +55,7 @@ const Signup = () => {
     <div>
       
     <Nav />
-    <div className="w-[100] h-[100] bg-green-100 flex items-center justify-center min-h-screen p-4 relative isolate">
+    <div className="w-[100] h-[100] flex items-center justify-center min-h-screen p-4 relative isolate">
       <div className="w-full p-8 max-w-lg bg-green-800 rounded-3xl border-0">
         <p className="text-center text-4xl font-bold tracking-tight mb-10 text-white">Sign up</p>
         <p className="text-lg text-center text-white mb-10">Enter your details to sign up</p>
