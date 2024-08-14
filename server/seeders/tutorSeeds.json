@@ -2,7 +2,19 @@
     {
         "firstName": "Mitra",
         "lastName": "Ahmadi",
-        "email": "mitraahmadi129@gmail.com",
-        "password": "Kittens101"
+        "email": "mitraahmad@gmail.com",
+        "password": "password10"
+    },
+    {
+        "firstName": "Kiran",
+        "lastName": "Ross",
+        "email": "kiranross@gmail.com",
+        "password": "password10"
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Wong",
+        "email": "timwong@gmail.com",
+        "password": "password10"
     }
 ]
