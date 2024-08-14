@@ -1,10 +1,13 @@
-import Calendar from "../components/Calendar";
-/* import NewCalendar from "../components/NewCalendar"; */
+import React from 'react'
+import Nav from '../components/Nav'
+import NewCalendar from '../components/Calendar'
 
-const Bookings = () => {
+export default function Bookings() {
   return (
-    <Calendar />
-  )
-};
+    <div>
+        <Nav />
+        <NewCalendar />
 
-export default Bookings;
+    </div>
+  )
+}

@@ -11,19 +11,28 @@
     margin-right: 0;
   }
 
+  h1 {
+    font-size: 2rem !important;
+  }
+
   .tutor-name {
     margin-left: 0.5rem;
   }
 
-  .calendar-box {
-    width: 100vw;
-    margin: 15px;
+  section {
+    width: auto !important;
+    margin: 10px !important;
+    margin-top: 20px !important;
   }
 
   span {
     font-size: 11px;
   }
 
+  .basis-12 {
+    display: none;
+  }
+  /* 
   .week-switch-small {
     width: 4rem;
     display: block;
@@ -37,7 +46,7 @@
   .left-arrow,
   .right-arrow {
     display: none !important;
-  }
+  } */
 
   .dates-box {
     height: 4.5rem;
@@ -45,7 +54,7 @@
 
   .dates,
   .short-day {
-    font-size: 13px;
+    font-size: 1rem;
   }
 
   .full-day {
@@ -61,18 +70,36 @@
     height: 25px;
     margin: 0;
     border-radius: 0;
-    background-color: gray;
+    color: black !important;
+    background-color: rgb(229 231 235);
+  }
+
+  .button-cells {
+    color: black;
   }
 }
 
 /* Media query for smaller screens */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  .calendar-box {
+  section {
     margin: 2rem;
+  }
+
+  #text-white {
+    color: white;
   }
 
   .full-day {
     display: none;
+  }
+
+  .grid-cell {
+    font-size: 13px;
+    height: 25px;
+    margin: 0;
+    border-radius: 0;
+    color: black !important;
+    background-color: rgb(229 231 235);
   }
 
   .small-view-arrow {
@@ -93,12 +120,8 @@
     display: none !important;
   }
 
-  .small-view-arrow {
-    display: none !important;
-  }
-
-  .week-switch-small {
-    display: none;
+  #text-white {
+    color: white;
   }
 
   span {
@@ -130,5 +153,9 @@
 
   span {
     flex-basis: 50% !important;
+  }
+
+  #text-white {
+    color: white;
   }
 }

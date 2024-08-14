@@ -1,11 +1,12 @@
 import createDates from "../../utils/createDates";
 import React, { useEffect, useState } from "react";
-import "./calendar.css";
-
+import "./index.css";
+import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { SAVE_BOOKING } from "../../utils/mutations";
 import { QUERY_ME, QUERY_BOOKINGS } from "../../utils/queries";
 import { toast } from "react-toastify";
+import Auth from "../../utils/auth";
 
 const days = createDates();
 
@@ -106,7 +107,9 @@ const NewCalendar = () => {
   const getBookedColor = React.useCallback(
     (day, month, timeSlot) => {
       const foundBooking = isBooked(day, month, timeSlot);
-      if (foundBooking) return "bg-red-500";
+      if (foundBooking) return "bg-red-900 text-red-900 hover:bg-red-900";
+      // line 112 was for testing because calendar wasn't blocking out with red colour
+      else if (!foundBooking) return "bg-black text-white";
       return ``;
     },
     [bookingsData, isBooked]
@@ -130,121 +133,90 @@ const NewCalendar = () => {
         },
       });
 
-      toast.success("Booked successfully!",{position: "top-center"});
+      toast.success("Booked successfully!",{position: "top-center", autoClose: 3000, closeOnClick: true, pauseOnHover: false});
 
       refetchBookings();
     } catch (error) {
-      toast.error("Something went wrong, while creating booking",{position: "top-center"});
+      toast.error("Something went wrong, while creating booking",{position: "top-center", autoClose: 3000, closeOnClick: true, pauseOnHover: false});
       console.error(error);
     }
-
-    // console.log(typeof(bookedDay));
-    // console.log(typeof(bookedMonth));
-    // console.log(typeof(timeSlot));
-    // console.log(userId);
   };
 
-  const handleTimeSlotClick = (dateString, time) => {
-    // const [day, month] = dateString.split('/').map(Number); // Convert to numbers
-    // const isConfirmed = Prompt(day, month, time);
-    // if (isConfirmed) {
-    //   console.log(`Booking confirmed for ${day}/${month} at ${time}`);
-    // } else {
-    //   console.log(`Booking canceled or failed for ${day}/${month} at ${time}`);
-    // }
-    console.log(days);
-  };
 
   return (
-    <div className="shadow-md w-screen h-screen">
-      <h1 className="text-5xl font-bold text-center pt-8">Schedule a booking</h1>
-      <section className="calendar-box flex flex-col justify-start align-start bg-gray-200 border border-green-800 border-2 w-90 m-8 rounded-xl h-auto">
-        <div className="info-head flex flex-row items-center h-28 rounded-xl text-black ml-5 w-100">
-          <span className="header-text font-bold text-center">
-            Available times for your Tutor:
-          </span>
-          <span className="tutor-name basis-full ml-3 font-bold text-center">
-            Tutor Name
-          </span>
-        </div>
-        <div className="dates-box flex flex-row items-center h-28 bg-green-800">
-          {/* {daysOfWeek.map((day, index) => (
-            <div className="flex-1 grow text-center" key={index}>
-              <span className="full-day font-bold">{day.day}</span>
-              <span className="short-day font-bold">{day.shortName}</span>
-              <br /><span className="dates">{datesThisWeek[index].date}</span>
-            </div>
-          ))} */}
-
-          {days.map((day) => {
-            return (
-              <div className="flex-1 grow text-center" key={day.day}>
-                <span className="font-bold text-white">{day.weekday}</span>
-                {/* <span className="short-day font-bold">{day.shortName}</span> */}
-                <br />
-                <span className="dates text-white">
-                  {day.day}/{day.month}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-        <div className="flex flex-col h-full bg-gray-200 w-100 pb-6 rounded-bl-xl rounded-br-xl">
-          {timeslots.map((timeslot) => (
-            <div key={timeslot.id} className="flex flex-row w-full">
-              <div className="side-space basis-12"></div>
-
-              {/* {daysOfWeek.map((_, index) => {
-                const dayName = new Date(2024, parseInt(datesThisWeek[index].date.split('/')[1]) - 1, parseInt(datesThisWeek[index].date.split('/')[0])).toLocaleDateString('en-US', { weekday: 'long' });
-
-                return (
-                  <div
-                    key={index}
-                    className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900`}
-                  >
-                    <button
-                      id={timeslot.time}
-                      className="w-full h-full text-white"
-                      onClick={() => handleTimeSlotClick(datesThisWeek[index].date, timeslot.time)}
-                    >
-                      {timeslot.time}
-                    </button>
-                  </div>
-                );
-              })} */}
-
-              {days.map((day) => {
-                return (
-                  <div
-                    key={day.day}
-                    className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900  ${getBookedColor(
-                      day.day,
-                      day.month,
-                      timeslot.time
-                    )} `}
-                  >
-                    <button
-                      id={timeslot.time}
-                      data-month={day.month}
-                      data-day={day.day}
-                      onClick={(event) => {
-                        if (isBooked(day.day, day.month, timeslot.time))
-                          return toast.error("Already booked!",{position: "top-center"});
-                        handleClick(event);
-                      }}
-                      className="w-full h-full text-white"
-                    >
-                      {timeslot.time}
-                    </button>
-                  </div>
-                );
-              })}
-              <div className="side-space basis-12"></div>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
+    <>
+      {Auth.loggedIn() ? (
+        <>
+          <h1 className="text-5xl font-bold text-center pt-8">Schedule a Booking</h1>
+           <section className="flex flex-col justify-start align-start bg-gray-200 border border-green-800 border-2 w-90 m-8 rounded-xl h-auto">
+           <div className="info-head flex flex-row items-center h-28 rounded-xl text-black ml-5 w-100">
+             <span className="header-text font-bold text-center">
+               Available times for your Tutor:
+             </span>
+             <span className="tutor-name basis-full ml-3 font-bold text-center">
+               Tutor Name
+             </span>
+           </div>
+           <div className="dates-box flex flex-row items-center h-28 bg-green-800">
+             <div className="basis-12"></div>
+   
+             {days.map((day) => {
+               return (
+                 <div className="flex-1 grow text-center" key={day.day}>
+                   <span className="full-day font-bold text-white">{day.weekday}</span>
+                   <span className="short-day font-bold text-white">{day.dayShort}</span> 
+                   <br />
+                   <span className="dates text-white">
+                     {day.day}/{day.month}
+                   </span>
+                 </div>
+               );
+             })}
+             <div className="basis-12"></div>
+           </div>
+           <div className="flex flex-col h-full bg-gray-200 w-100 pb-6 rounded-bl-xl rounded-br-xl">
+             {timeslots.map((timeslot) => (
+               <div key={timeslot.id} className="flex flex-row w-full">
+                 <div className="side-space basis-12"></div>
+   
+                 {days.map((day) => {
+                   return (
+                     <div
+                       key={day.day}
+                       className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900 ${getBookedColor(
+                         day.day,
+                         day.month,
+                         timeslot.time
+                       )}`}
+                     >
+                       <button
+                         id={timeslot.time}
+                         data-month={day.month}
+                         data-day={day.day}
+                         onClick={(event) => {
+                           if (isBooked(day.day, day.month, timeslot.time))
+                             return toast.error("Already booked!",{position: "top-center"});
+                           handleClick(event);
+                         }}
+                         className="button-cells w-full h-full"
+                       >
+                         {timeslot.time}
+                       </button>
+                     </div>
+                   );
+                 })}
+                 <div className="side-space basis-12"></div>
+               </div>
+             ))}
+           </div>
+         </section>
+         </>
+      ) : (
+          <h1 className="text-center h-12 mt-24 text-3xl">Oopsie! Please login to access your booking calendar. Please {' '}
+            <Link to="/login" className="font-bold">login</Link> or <Link to="/signup" className="font-bold">signup.</Link>
+          </h1>
+      )}
+     </>
   );
 };
 

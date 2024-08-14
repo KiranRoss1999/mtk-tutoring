@@ -7,6 +7,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Footer from './components/Footer';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,8 +38,11 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div>
+      <div className="w-100vw h-auto bg-white overflow-hidden">
         <Outlet />
+        <div className='w-90 flex justify-center h-auto'>
+          <Footer />
+        </div>
         <ToastContainer />
       </div>
     </ApolloProvider>

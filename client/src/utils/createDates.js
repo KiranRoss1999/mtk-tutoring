@@ -7,14 +7,13 @@ const createDates = () => {
 
   let newDate = new Date(currentDate);
 
-  for(let i = 0; i < week; i++) {
-
+  for (let i = 0; i < week; i++) {
     // let dateDay = (currentDate.getDay() + i) % 7;
     newDate.setDate(currentDate.getDate() + i);
     // console.log(newDate);
     let dateMonth = newDate.getMonth() + 1;
     let dateDate = newDate.getDate();
-    let dateDay = newDate.toLocaleString('en-us', {weekday: 'long'});
+    let dateDay = newDate.toLocaleString("en-us", { weekday: "long" });
     let dateShort = dateDay.substring(0, 3);
 
     let dateObj = {
@@ -25,7 +24,7 @@ const createDates = () => {
     };
 
     days.push(dateObj);
-  };
+  }
 
   // console.log(days);
   return days;
