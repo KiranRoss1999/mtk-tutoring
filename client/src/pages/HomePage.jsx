@@ -6,8 +6,8 @@ const HomePage = () => {
   return (
     <>
      <Nav />
-        <div className="pt-10 px-8 max-w-7xl mx-auto relative">
-          <div className="absolute top-0 right-0 hidden md:block w-full h-full bg-green-800 transform scale-90 translate-x-1/2 translate-y-20 -rotate-12 opacity-90"></div>
+        <div className="pt-10 px-8 max-w-7xl mx-auto relative pb-64">
+          <div className="green-box absolute hidden md:block w-full h-full bg-green-800 transform scale-90 translate-x-1/2 translate-y-20 -rotate-12 opacity-90"></div>
           <div className="flex flex-col items-center md:flex-row">
             <div className="flex flex-col items-start w-full md:w-1/2 md:pr-16">
               <p className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black via-green-900 to-gray-400">Empowering minds, one lesson at a time...</p>

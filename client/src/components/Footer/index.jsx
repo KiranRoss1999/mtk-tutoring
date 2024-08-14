@@ -1,4 +1,5 @@
-import "./index.css"
+import "./footer.css";
+import mtkLogo from "../../../public/assets/images/mtk.png";
 
 export default function Footer() {
     return (
@@ -10,7 +11,7 @@ export default function Footer() {
                 use and disclosure of information that you may provide via this website or our mobile applications.
             </p>
             <br />
-        <img src='../../public/mtk.png' className='h-48 w-48'></img>
+        <img src={mtkLogo} className='h-48 w-48'></img>
         <p className="text-xs text-center flex-1">
             Mandatory information required to register for the service we provide on our Platforms or to access other services provided by us, 
             including your name, email address, and a password. Some of these fields are mandatory. 
