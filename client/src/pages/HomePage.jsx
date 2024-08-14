@@ -14,9 +14,7 @@ const HomePage = () => {
             <div className="flex flex-col items-start w-full md:w-1/2 md:pr-16">
               <p className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black via-green-900 to-gray-400">Empowering minds, one lesson at a time...</p>
               <p className="text-lg text-green-800 mt-7">Connect with qualified tutors who understand your unique needs and goals.</p>
-              <div className="flex w-full mt-7">
-                <a href="#_" className="w-full text-lg text-green-800 bg-green-100 border-2 border-green-100 rounded-lg text-center py-2 px-5 md:w-auto">Get Started</a>
-                <a href="#_" className="w-full text-lg text-green-800 bg-green-100 border-2 border-green-100 rounded-lg text-center py-2 px-5 md:w-auto ml-2">Learn More</a>     
+              <div className="flex w-full mt-7">   
               </div>
             </div>
             <div className="relative w-full md:w-1/2 flex items-center justify-center">
