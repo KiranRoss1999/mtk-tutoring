@@ -1,7 +1,7 @@
 import "./team.css";
-import Tim from "../../../public/assets/images/Tim.png";
-import Mitra from "../../../public/assets/images/Mitra.jpeg";
-import Kiran from "../../../public/assets/images/Kiran.jpg";
+import Tim from "../../../public/assets/images/tim.png";
+import Mitra from "../../../public/assets/images/mitra.jpeg";
+import Kiran from "../../../public/assets/images/kiran.jpg";
 
 export default function Team() {
     return(
