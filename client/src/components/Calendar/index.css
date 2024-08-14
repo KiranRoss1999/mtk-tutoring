@@ -85,8 +85,21 @@
     margin: 2rem;
   }
 
+  #text-white {
+    color: white;
+  }
+
   .full-day {
     display: none;
+  }
+
+  .grid-cell {
+    font-size: 13px;
+    height: 25px;
+    margin: 0;
+    border-radius: 0;
+    color: black !important;
+    background-color: rgb(229 231 235);
   }
 
   .small-view-arrow {
@@ -107,12 +120,8 @@
     display: none !important;
   }
 
-  .small-view-arrow {
-    display: none !important;
-  }
-
-  .week-switch-small {
-    display: none;
+  #text-white {
+    color: white;
   }
 
   span {
@@ -144,5 +153,9 @@
 
   span {
     flex-basis: 50% !important;
+  }
+
+  #text-white {
+    color: white;
   }
 }

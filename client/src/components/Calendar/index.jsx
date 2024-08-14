@@ -107,7 +107,8 @@ const NewCalendar = () => {
   const getBookedColor = React.useCallback(
     (day, month, timeSlot) => {
       const foundBooking = isBooked(day, month, timeSlot);
-      if (foundBooking) return "bg-red-900 text-red-900 hover:bg-red-900 hover:text-900";
+      if (foundBooking) return "bg-red-900 text-red-900 hover:bg-red-900";
+      else if (!foundBooking) return "bg-black text-white";
       return ``;
     },
     [bookingsData, isBooked]
@@ -138,23 +139,8 @@ const NewCalendar = () => {
       toast.error("Something went wrong, while creating booking",{position: "top-center", autoClose: 3000, closeOnClick: true, pauseOnHover: false});
       console.error(error);
     }
-
-    // console.log(typeof(bookedDay));
-    // console.log(typeof(bookedMonth));
-    // console.log(typeof(timeSlot));
-    // console.log(userId);
   };
 
-  const handleTimeSlotClick = (dateString, time) => {
-    // const [day, month] = dateString.split('/').map(Number); // Convert to numbers
-    // const isConfirmed = Prompt(day, month, time);
-    // if (isConfirmed) {
-    //   console.log(`Booking confirmed for ${day}/${month} at ${time}`);
-    // } else {
-    //   console.log(`Booking canceled or failed for ${day}/${month} at ${time}`);
-    // }
-    console.log(days);
-  };
 
   return (
     <>
@@ -172,13 +158,6 @@ const NewCalendar = () => {
            </div>
            <div className="dates-box flex flex-row items-center h-28 bg-green-800">
              <div className="basis-12"></div>
-             {/* {daysOfWeek.map((day, index) => (
-               <div className="flex-1 grow text-center" key={index}>
-                 <span className="full-day font-bold">{day.day}</span>
-                 <span className="short-day font-bold">{day.shortName}</span>
-                 <br /><span className="dates">{datesThisWeek[index].date}</span>
-               </div>
-             ))} */}
    
              {days.map((day) => {
                return (
@@ -199,34 +178,15 @@ const NewCalendar = () => {
                <div key={timeslot.id} className="flex flex-row w-full">
                  <div className="side-space basis-12"></div>
    
-                 {/* {daysOfWeek.map((_, index) => {
-                   const dayName = new Date(2024, parseInt(datesThisWeek[index].date.split('/')[1]) - 1, parseInt(datesThisWeek[index].date.split('/')[0])).toLocaleDateString('en-US', { weekday: 'long' });
-   
-                   return (
-                     <div
-                       key={index}
-                       className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900`}
-                     >
-                       <button
-                         id={timeslot.time}
-                         className="w-full h-full text-white"
-                         onClick={() => handleTimeSlotClick(datesThisWeek[index].date, timeslot.time)}
-                       >
-                         {timeslot.time}
-                       </button>
-                     </div>
-                   );
-                 })} */}
-   
                  {days.map((day) => {
                    return (
                      <div
                        key={day.day}
-                       className={`grid-cell flex-1 grow text-center text-white rounded-xl bg-black h-10 m-1 hover:bg-sky-900  ${getBookedColor(
+                       className={`grid-cell flex-1 grow text-center rounded-xl bg-black h-10 m-1 hover:bg-sky-900 ${getBookedColor(
                          day.day,
                          day.month,
                          timeslot.time
-                       )} `}
+                       )}`}
                      >
                        <button
                          id={timeslot.time}
