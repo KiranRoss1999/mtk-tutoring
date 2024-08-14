@@ -108,6 +108,7 @@ const NewCalendar = () => {
     (day, month, timeSlot) => {
       const foundBooking = isBooked(day, month, timeSlot);
       if (foundBooking) return "bg-red-900 text-red-900 hover:bg-red-900";
+      // line 112 was for testing because calendar wasn't blocking out with red colour
       else if (!foundBooking) return "bg-black text-white";
       return ``;
     },
