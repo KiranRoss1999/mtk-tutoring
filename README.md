@@ -62,7 +62,7 @@ For usage, you may simply use the application via the link provided below. Howev
 
 
 ## Links 
-[- https://dnd-character-builder-and-database.onrender.com](https://mtk-tutoring.onrender.com/)
+[- [https://mtk-tutoring.onrender.com/](https://mtk-tutoring.onrender.com/)
 
 
 ## Technologies Usage
